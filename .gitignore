@@ -5,11 +5,13 @@
 /.pnp
 .pnp.js
 
+/public/videos/video-2.mp4
 # testing
 /coverage
 
 # production
 /build
+.eslintcache
 
 # misc
 .DS_Store

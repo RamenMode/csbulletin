@@ -54,17 +54,23 @@ function Navbar() {
                             FAQ
                         </Link>
                     </li>
-                    <li className = 'nav-item'>
-                        <Link to= '/sign-up'
-                            className = 'nav-links-mobile'
-                            onClick = {closeMobileMenu}
-                            >
-                        Sign Up
-                        </Link>
-                    </li>
+                    {!button ? <li className = 'nav-item'>
+                        <a href="#" class="steambutton">
+                            <span>Login With Steam</span>
+                            <div class="icon">
+                                <i class="fa fa-steam-square"></i>
+                            </div>
+                        </a>
+                    </li> : null}
                 </ul>
-                {button && <Button buttonStyle = 'btn--outline' className = 'nav-item'>Sign Up</Button>}
-                {button && <Button buttonStyle = 'btn--outline' className = 'nav-item'>Login</Button>}
+                {button ? <li className = 'nav-item-button'>
+                        <a href="#" class="steambutton">
+                            <span>Login With Steam</span>
+                            <div class="icon">
+                                <i class="fa fa-steam-square"></i>
+                            </div>
+                        </a>
+                    </li> : null}
             </div>
         </nav>
     </>

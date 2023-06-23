@@ -21,7 +21,7 @@ import './Artcs.css';
 function Artcs() {
   return (
     <div className='hero-container'>
-      <h1>A P2P trading Forum</h1>
+      <h1>A P2P Trading Forum</h1>
       <p style = {{color: '#fff'}}>No fees, no middleman</p>
       <div className='hero-btns'>
         <Button
@@ -30,7 +30,7 @@ function Artcs() {
           buttonSize='btn--large'
           onClick={console.log('hey')}
         >
-          Trade Now <i className='far fa-play-circle' />
+          Trade Now
         </Button>
       </div>
     </div>

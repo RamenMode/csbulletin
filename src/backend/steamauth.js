@@ -6,17 +6,26 @@ var passportSteam = require('passport-steam');
 var cors = require('cors');
 var SteamStrategy = passportSteam.Strategy; // check this first
 
-
-// setup passport
-passport.serializeUser((user, done) => {
-    done(null, user); // saves user
-});
-
-passport.deserializeUser((obj, done) => {
-    done(null, obj);
-});
 // set up express app port
 var port = 4000;
+
+// set up express app
+var app = express(); // check here 2nd, didn't set up views 
+app.use(cors({
+    origin: "http://localhost:3000",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true // bypass limitations of multiple ports
+}));
+app.use(session({
+    secret: 'eyhowirngoi3ny4howrsaf',
+    saveUninitialized: true,
+    resave: true,
+    name: 'name of session id'
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+// check here third, didn't set up express.static
+// Required to get data from user for sessions
 
    // Initiate Strategy
 passport.use(new SteamStrategy({
@@ -30,21 +39,14 @@ passport.use(new SteamStrategy({
     });
 }));
 
-// set up express app
-var app = express(); // check here 2nd, didn't set up views 
-app.use(cors({
-    origin: "http://localhost:3000" // bypass limitations of multiple ports
-}));
-app.use(session({
-    secret: 'eyhowirngoi3ny4howrsaf',
-    saveUninitialized: true,
-    resave: true,
-    name: 'name of session id'
-}))
-app.use(passport.initialize());
-app.use(passport.session());
-// check here third, didn't set up express.static
-// Required to get data from user for sessions
+passport.serializeUser((user, done) => {
+    done(null, user); // saves user
+});
+
+passport.deserializeUser((obj, done) => {
+    done(null, obj);
+});
+
 
 // Routes
 app.get('/', function (req, res) {
@@ -59,7 +61,7 @@ app.get('/displayinfo', ensureAuthenticated, function(req, res) {
 app.get('/logout', function(req, res){
     req.logout(function(err) {
         if (err) { return next(err); }
-        res.redirect('/');
+        res.redirect('http://localhost:3000/');
     });
 });
 
@@ -74,7 +76,7 @@ app.get('/user', (req, res) => { // not authenticated, if use passport.authentic
     if(req.isAuthenticated()) {
         res.send(req.user)
     } else {
-    res.send('404') }
+    res.send(false) } // if not authenticated user
     //res.redirect('http://localhost:3000/')
 });
 

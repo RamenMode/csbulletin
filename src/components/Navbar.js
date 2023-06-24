@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faScroll, faBars, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import './Navbar.css';
-import { Button } from './Button';
 
 
 function Navbar() {
@@ -13,6 +12,7 @@ function Navbar() {
     const closeMobileMenu = () => setClick(false);
 
     const [button, setButton] = useState(true)
+    const [user, setUser] = useState('')
 
     const showButton = () => {
         if (window.innerWidth <= 960) {
@@ -22,8 +22,28 @@ function Navbar() {
         }
     }
 
+    function checkAuthenticated() {
+        fetch('http//localhost:4000/user', {
+            method: 'GET',
+            credentials: 'include'
+        }).then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Something went wrong');
+        })
+        .then((responseJson) => {
+               console.log(responseJson)
+        })
+        .catch((error) => {
+                console.log(error)
+        });
+              
+    }
+
     useEffect(() => {
         showButton()
+        checkAuthenticated()
     }, [])
 
     window.addEventListener('resize', showButton);
@@ -55,7 +75,7 @@ function Navbar() {
                         </Link>
                     </li>
                     {!button ? <li className = 'nav-item'>
-                        <a href="#" class="steambutton">
+                        <a href="http://localhost:4000/api/auth/steam" class="steambutton">
                             <span>Login With Steam</span>
                             <div class="icon">
                                 <i class="fa fa-steam-square"></i>
@@ -64,7 +84,7 @@ function Navbar() {
                     </li> : null}
                 </ul>
                 {button ? <li className = 'nav-item-button'>
-                        <a href="#" class="steambutton">
+                        <a href="http://localhost:4000/api/auth/steam" class="steambutton">
                             <span>Login With Steam</span>
                             <div class="icon">
                                 <i class="fa fa-steam-square"></i>

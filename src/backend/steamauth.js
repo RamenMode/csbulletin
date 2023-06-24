@@ -7,14 +7,6 @@ var app = express();
 
 var port = 4000;
 
-
-// Required to get data from user for sessions
-passport.serializeUser((user, done) => {
-    done(null, user); // saves user
-});
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
    // Initiate Strategy
 passport.use(new SteamStrategy({
     returnURL: 'http://localhost:' + port + '/api/auth/steam/return',
@@ -28,7 +20,7 @@ passport.use(new SteamStrategy({
 }));
 
 app.use(session({
-    secret: 'y35htoewqtn428h53wr',
+    secret: 'eyhowirngoi3ny4howrsaf',
     saveUninitialized: true,
     resave: false,
     cookie: {
@@ -36,9 +28,16 @@ app.use(session({
      secure: true
     }
    }))
-
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Required to get data from user for sessions
+passport.serializeUser((user, done) => {
+    done(null, user); // saves user
+});
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
 
 // Routes
 app.get('/', (req, res) => {
@@ -50,10 +49,20 @@ app.get('/api/auth/steam', passport.authenticate('steam', {failureRedirect: '/'}
 app.get('/api/auth/steam/return', passport.authenticate('steam', {failureRedirect: '/'}), function (req, res) {
     res.redirect('http://localhost:3000/')
     console.log(req.user)
+    console.log(req.isAuthenticated())
 });
-app.get('/user', passport.authenticate('steam', {failureRedirect: '/'}), function (req, res) {
-    res.status(200).send('sometext')
-    //res.status(200).json({status: 200, req: req.user})
+app.get('/user', (req, res) => { // not authenticated, if use passport.authenticate, it is still not authenticated
+    console.log("From /user")
+    console.log(req.user)
+    console.log(req.isAuthenticated())
+    res.redirect('http://localhost:3000/')
+    if(req.isAuthenticated()) {
+        res.status(200).send({
+          "success": true,
+          "message": "success",
+          "user": req.user
+        })
+      }
 });
 
 app.listen(port, () => console.log(`Express app running on port ${port}!`));

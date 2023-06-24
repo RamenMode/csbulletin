@@ -22,26 +22,16 @@ function Navbar() {
         }
     }
 
-    function checkAuthenticated() {
-        fetch('http//localhost:4000/user', {
-            method: 'GET',
-            credentials: 'include'
-        }).then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Something went wrong');
-        })
-        .then((responseJson) => {
-               console.log(responseJson)
-        })
-        .catch((error) => {
-                console.log(error)
-        });
+    async function checkAuthenticated() {
+        console.log("hello")
+        fetch('http://localhost:4000/user')
+        .then(response => response.text())
+        .then(text => console.log(text))
               
     }
 
     useEffect(() => {
+        console.log("Checked")
         showButton()
         checkAuthenticated()
     }, [])
@@ -75,19 +65,19 @@ function Navbar() {
                         </Link>
                     </li>
                     {!button ? <li className = 'nav-item'>
-                        <a href="http://localhost:4000/api/auth/steam" class="steambutton">
+                        <a href="http://localhost:4000/auth/steam" class="steambutton">
                             <span>Login With Steam</span>
-                            <div class="icon">
-                                <i class="fa fa-steam-square"></i>
+                            <div className="icon">
+                                <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
                     </li> : null}
                 </ul>
                 {button ? <li className = 'nav-item-button'>
-                        <a href="http://localhost:4000/api/auth/steam" class="steambutton">
+                        <a href="http://localhost:4000/auth/steam" class="steambutton">
                             <span>Login With Steam</span>
-                            <div class="icon">
-                                <i class="fa fa-steam-square"></i>
+                            <div className="icon">
+                                <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
                     </li> : null}

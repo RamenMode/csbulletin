@@ -18,6 +18,12 @@ import '../App.css';
 import { Button } from './Button';
 import './Artcs.css';
 
+const test = () => {
+  fetch('http://localhost:4000/loggedin')
+    .then(response => response.text())
+    .then(text => console.log(text))
+}
+
 function Artcs() {
   return (
     <div className='hero-container'>
@@ -28,7 +34,7 @@ function Artcs() {
           className='btns'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
-          
+          onClick = {test}
         >
           Trade Now
         </Button>

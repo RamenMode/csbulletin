@@ -14,6 +14,8 @@ function Navbar() {
     const [button, setButton] = useState(true)
     const [user, setUser] = useState('')
 
+    const [profileSelected, setProfileSelected] = useState(false)
+
     const showButton = () => {
         if (window.innerWidth <= 960) {
             setButton(false)
@@ -22,14 +24,20 @@ function Navbar() {
         }
     }
 
-    async function checkAuthenticated() {
-        console.log("hello")
-        fetch('http://localhost:4000/user')
-        .then(response => response.text())
-        .then(text => console.log(text))
-              
+    const profileClicked = () => {
+        setProfileSelected(!profileSelected)
     }
 
+    async function checkAuthenticated() {
+        console.log("hello")
+        fetch('http://localhost:4000/user', {
+            credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(text => setUser(text ? text.photos[1].value : ''))
+        
+    }
+    
     useEffect(() => {
         console.log("Checked")
         showButton()
@@ -64,27 +72,33 @@ function Navbar() {
                             FAQ
                         </Link>
                     </li>
-                    {!button ? <li className = 'nav-item'>
+                    {button ? null : user ? <li className = 'nav-item-modified'>
+                        <a href="http://localhost:4000/logout" class="steambutton">
+                            <span>Sign Out</span>
+                            <div className="icon">
+                                <i className="fa fa-steam-square"></i>
+                            </div>
+                        </a>
+                    </li> : <li className = 'nav-item-modified'>
                         <a href="http://localhost:4000/auth/steam" class="steambutton">
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
-                    </li> : null}
+                    </li>}
                 </ul>
-                {button ? <li className = 'nav-item-button'>
+                {!button ? null : user ? <a onClick = {profileClicked} className = "profilelink"><img className = "profilepic" src = {`${user}`}/></a> : <li className = 'nav-item-button'>
                         <a href="http://localhost:4000/auth/steam" class="steambutton">
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
-                    </li> : null}
+                    </li>}
             </div>
         </nav>
     </>
   )
 }
-
 export default Navbar

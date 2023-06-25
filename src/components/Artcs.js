@@ -19,7 +19,9 @@ import { Button } from './Button';
 import './Artcs.css';
 
 const test = () => {
-  fetch('http://localhost:4000/loggedin')
+  fetch('http://localhost:4000/loggedin', {
+    credentials: 'include'
+  })
     .then(response => response.text())
     .then(text => console.log(text))
 }

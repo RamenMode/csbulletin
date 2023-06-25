@@ -31,6 +31,10 @@
     overflow: hidden;
     
   }
+
+  .profilepic {
+    border-radius: 50%;
+  }
   
   .fa-typo3 {
     margin-left: 0.5rem;
@@ -51,9 +55,17 @@
   .nav-item {
     height: 60px;
   }
+
+  .nav-item-modified {
+    height: 60px;
+    margin-top: 30px;
+  }
   
   .nav-item-button {
     height: 100px;
+  }
+  .profilelink {
+    cursor: pointer
   }
   
   .nav-links {
@@ -164,6 +176,7 @@
       color: #242424;
       transition: 250ms;
     }
+
     
   }
 
@@ -179,6 +192,7 @@
     cursor: pointer;
     overflow: hidden;
     border-radius: 5px;
+    margin-top: 30px;
   }
   
   .steambutton span {

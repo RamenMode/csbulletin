@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faScroll, faBars, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import './Navbar.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setEmpty } from '../redux/counter.js'
 
 
 function Navbar() {
@@ -11,8 +13,11 @@ function Navbar() {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
+    const userStatus = useSelector((state) => state.user.value)
+    const dispatch = useDispatch()
+
     const [button, setButton] = useState(true)
-    const [user, setUser] = useState('')
+    //const [user, setUser] = useState('')
 
     const [profileSelected, setProfileSelected] = useState(false)
 
@@ -34,7 +39,7 @@ function Navbar() {
             credentials: 'include'
         })
         .then(response => response.json())
-        .then(text => setUser(text ? text.photos[1].value : ''))
+        .then(text => text ? dispatch(setUser(text.photos[1].value)) : dispatch(setEmpty()))
         
     }
     
@@ -72,12 +77,12 @@ function Navbar() {
                             FAQ
                         </Link>
                     </li>
-                    {user ? <li className = 'nav-item'>
+                    {userStatus ? <li className = 'nav-item'>
                         <a href="http://localhost:4000/logout" className = 'nav-links' onClick={closeMobileMenu}>
                             Sign Out
                         </a>
                     </li> : null}
-                    {button ? null : user ? <li className = 'nav-item-modified'>
+                    {button ? null : userStatus ? <li className = 'nav-item-modified'>
                         <a href="http://localhost:4000/logout" class="steambutton">
                             <span>Sign Out</span>
                             <div className="icon">
@@ -93,14 +98,14 @@ function Navbar() {
                         </a>
                     </li>}
                 </ul>
-                {!button ? null : !user ? <li className = 'nav-item-button'>
+                {!button ? null : !userStatus ? <li className = 'nav-item-button'>
                         <a href="http://localhost:4000/auth/steam" class="steambutton">
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
-                    </li> : <a onClick = {profileClicked} className = "profilelink"><img className = "profilepic" src = {`${user}`}/></a>}
+                    </li> : <a onClick = {profileClicked} className = "profilelink"><img className = "profilepic" src = {`${userStatus}`}/></a>}
             </div>
         </nav>
     </>

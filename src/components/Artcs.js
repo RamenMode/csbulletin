@@ -1,33 +1,25 @@
-/*import React from 'react'
-import './Artcs.css'
-import '../App.css'
-
-function Artcs() {
-  return (
-    <div className = "container">
-       
-    </div>
-    
-  )
-}
-
-export default Artcs*/
-
 import React from 'react';
 import '../App.css';
 import { Button } from './Button';
 import './Artcs.css';
 import './Navbar.js'
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setEmpty } from '../redux/counter.js'
 
-const test = () => {
-  fetch('http://localhost:4000/loggedin', {
-    credentials: 'include'
-  })
-    .then(response => response.text())
-    .then(text => console.log(text))
-}
 
 function Artcs() {
+
+  const userStatus = useSelector((state) => state.user.value)
+  const dispatch = useDispatch()
+
+  const test = () => {
+    fetch('http://localhost:4000/loggedin', {
+      credentials: 'include'
+    })
+      .then(response => response.text())
+      .then(text => console.log(text))
+  }
+
   return (
     <div className='hero-container'>
       <h1>A P2P Trading Forum</h1>

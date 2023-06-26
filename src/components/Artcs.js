@@ -17,6 +17,7 @@ import React from 'react';
 import '../App.css';
 import { Button } from './Button';
 import './Artcs.css';
+import './Navbar.js'
 
 const test = () => {
   fetch('http://localhost:4000/loggedin', {

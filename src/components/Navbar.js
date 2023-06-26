@@ -72,6 +72,11 @@ function Navbar() {
                             FAQ
                         </Link>
                     </li>
+                    {user ? <li className = 'nav-item'>
+                        <a href="http://localhost:4000/logout" className = 'nav-links' onClick={closeMobileMenu}>
+                            Sign Out
+                        </a>
+                    </li> : null}
                     {button ? null : user ? <li className = 'nav-item-modified'>
                         <a href="http://localhost:4000/logout" class="steambutton">
                             <span>Sign Out</span>
@@ -88,14 +93,14 @@ function Navbar() {
                         </a>
                     </li>}
                 </ul>
-                {!button ? null : user ? <a onClick = {profileClicked} className = "profilelink"><img className = "profilepic" src = {`${user}`}/></a> : <li className = 'nav-item-button'>
+                {!button ? null : !user ? <li className = 'nav-item-button'>
                         <a href="http://localhost:4000/auth/steam" class="steambutton">
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
-                    </li>}
+                    </li> : <a onClick = {profileClicked} className = "profilelink"><img className = "profilepic" src = {`${user}`}/></a>}
             </div>
         </nav>
     </>

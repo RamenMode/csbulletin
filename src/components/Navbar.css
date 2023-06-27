@@ -182,7 +182,7 @@
 
   .steambutton {
     display: block;
-    background-color: #6f9f31;
+    background-color: #171a21;
     width: 270px;
     height: 50px;
     line-height: 50px;
@@ -251,7 +251,7 @@
   
   .steambutton span:after {
     content: '';
-    background-color: #5d8628;
+    background-color: #171a21;
     width: 2px;
     height: 70%;
     position: absolute;

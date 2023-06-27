@@ -1,0 +1,33 @@
+.background {
+    background-color:	#696969;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110vh;
+    width: 100%;
+    
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    width: 60%;
+    background-color: 	#696969;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 0%;
+    display: flex;
+    
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+h2 {
+    color: white;
+}
+h1 {
+    color: white;
+}
+p {
+    font-weight: 550;
+}

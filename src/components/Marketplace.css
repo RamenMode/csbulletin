@@ -1,0 +1,31 @@
+.background {
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    width: 100%;
+}
+
+.left-box {
+    flex: 1;
+    height: 110vh;
+    flex-direction: column;
+}
+
+.right-box {
+    flex: 4;
+    height: 110vh;
+    background-color: black;
+}
+
+.search {
+    flex: 1;
+    height: 60%;
+    background-color: dodgerblue;
+}
+
+.list {
+    flex: 1;
+    height: 50%;
+    background-color: green;
+}
+

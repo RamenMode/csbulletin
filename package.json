@@ -13,6 +13,7 @@
     "babel-plugin-macros": "^3.1.0",
     "babel-preset-react": "^6.24.1",
     "cors": "^2.8.5",
+    "csgofloat": "^4.0.0",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "get-steam-inventory": "^2.0.0",

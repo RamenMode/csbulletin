@@ -17,7 +17,7 @@ function Info() {
             <br></br>
             <h2>Are we safe?</h2>
             <br></br>
-            <p style = {{fontSize: 24}}>Since all trades are peer to peer with no obligations in accepting trades as on other sites, we do not require an API Key. We'd like to focus on the traditional trading experience, and do not require any sensitive details</p>
+            <p style = {{fontSize: 24}}>Since all trades are peer to peer with no obligations in accepting trades as on other sites, we do not require an API Key but rather only a Steam64 ID. Additionally, due to current server limitations, please make sure trades through steam are accurate with descriptions on the website</p>
             <br></br>
             <h2>How do we make money?</h2>
             <br></br>

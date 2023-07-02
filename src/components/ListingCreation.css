@@ -1,7 +1,50 @@
 .background {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 100vh;
     width: 100%;
     background-color: black;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: hidden;
 }
+.item-selector {
+    height: 60vh;
+    width: 100%;
+    background-color: green;
+}
+.items-selected {
+    flex: 1;
+    width: 100%;
+    background-color: dodgerblue;
+    
+}
+.get-inv-button {
+    height: 3vh;
+    width: 20%;
+    background-color: #212122;
+    margin-top: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    line-height: 3vh;
+    text-decoration: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #212122;
+    cursor: pointer;
+    color: white;
+}
+.inventory {
+    height: 60vh;
+    width: 40%;
+    background-color: #212122;
+    border-radius: 5px;
+    margin-top: 40px;
+}
+
+body {
+    overflow: hidden
+}
+
+a:visited { text-decoration: none; color:white; }

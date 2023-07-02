@@ -1,11 +1,12 @@
-var express = require('express');
+var express = require('express'); // cjs
 var passport = require('passport');
 var session = require('express-session');
 var util = require('util')
 var passportSteam = require('passport-steam');
 var cors = require('cors');
 var SteamStrategy = passportSteam.Strategy; // check this first
-
+// mod.cjs
+var fetch = require('node-fetch')
 // set up express app port
 var port = 4000;
 
@@ -94,4 +95,19 @@ function ensureAuthenticated(req, res, next) {
 
 app.get('/test', (req, res) => {
     res.send('test complete')
+})
+
+app.get('/getInventory/:steamid', (req, res) => {
+    fetch(`http://steamcommunity.com/inventory/${req.params.steamid}/730/2`, {
+            credentials: 'include'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            res.send(data)
+            //res.send('200')
+        })
+        .catch(err => {
+            console.error("error occurred", err)
+        })
 })

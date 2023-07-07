@@ -98,7 +98,7 @@ app.get('/test', (req, res) => {
 })
 
 app.get('/getInventory/:steamid', (req, res) => {
-    fetch(`http://steamcommunity.com/inventory/${req.params.steamid}/730/2`, {
+    fetch(`http://steamcommunity.com/inventory/${req.params.steamid}/730/2?l=english&count=1999`, {
             credentials: 'include'
         })
         .then(response => response.json())

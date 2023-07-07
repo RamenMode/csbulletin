@@ -3,7 +3,7 @@ import './Info.css'
 
 function Info() {
   return (
-    <body className = "background">
+    <body className = "backgrounder">
         <div className = "container">
             <h1 style = {{textAlign: "center"}}>Frequently Asked Questions</h1>
             <br></br>

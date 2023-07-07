@@ -9,21 +9,38 @@
     overflow-y: hidden;
 }
 .item-selector {
-    height: 60vh;
+    height: 65vh;
     width: 100%;
-    background-color: green;
+    display: flex;
+    flex-direction: row;
 }
+
+.user-inv {
+    flex: 1;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.all-inv {
+    flex: 1;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .items-selected {
     flex: 1;
     width: 100%;
-    background-color: dodgerblue;
-    
+    display: flex;
+    flex-direction: row;
 }
 .get-inv-button {
     height: 3vh;
     width: 20%;
     background-color: #212122;
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
     font-weight: bold;
     font-size: large;
@@ -36,15 +53,113 @@
     color: white;
 }
 .inventory {
-    height: 60vh;
-    width: 40%;
+    height: 50vh;
+    width: 90%;
     background-color: #212122;
     border-radius: 5px;
     margin-top: 40px;
+    scrollbar-color: blue;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 10px;
+    overflow-y: scroll;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #212122;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+.items-to-receive {
+    flex: 1;
+    background-color: palegoldenrod
+}
+
+.arrow {
+    flex: 0.3;
+    background-color: #212122;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.items-to-trade {
+    flex: 1;
+    background-color: purple
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    flex-direction: column;
+    position: relative;
+}
+
+.search-input {
+    padding: 10px;
+    border: 1px solid #212122;
+    border-radius: 5px;
+    width: 250px;
+    background-color: #212122;
+    color: white;
+}
+
+.search-button {
+    background-color: #212122;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
 
 body {
     overflow: hidden
+}
+
+.dropdown {
+    background-color: #212122;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    margin-top: 39px;
+    width: 250px;
+}
+  
+.dropdown:empty {
+    border: none;
+}
+  
+.dropdown-row {
+    cursor: pointer;
+    text-align: start;
+    margin: 2px 0;
+    color: white;
 }
 
 a:visited { text-decoration: none; color:white; }

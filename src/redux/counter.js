@@ -2,6 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   value: '',
+  inventory: {
+    assets: []
+  }
 }
 
 export const userSlice = createSlice({
@@ -18,10 +21,13 @@ export const userSlice = createSlice({
     setEmpty: (state) => {
       state.value = ''
     },
+    setInventory: (state, target) => {
+      state.inventory = target.payload
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setUser, setEmpty } = userSlice.actions
+export const { setUser, setEmpty, setInventory } = userSlice.actions
 
 export default userSlice.reducer

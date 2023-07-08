@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useId } from 'react'
 import './ListingCreation.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import Item from './Item.js'
 import { useSelector, useDispatch } from 'react-redux';
 import { setInventory } from '../redux/counter.js';
+import { v4 as uuid } from 'uuid';
 var data = require("../moreAssets/itemlinkconverter.json");
 
 function ListingCreation() {
@@ -35,6 +36,7 @@ function ListingCreation() {
         })
   }
 
+
   function findNameUsingClass(classid) {
     return userInventory.descriptions.find(item => item.classid == classid).name
   }
@@ -47,16 +49,62 @@ function ListingCreation() {
     return userInventory.descriptions.find(item => item.classid == classid).marketable
   }
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(""); // value of the search
+  const [showResults, setShowResults] = useState(false); // to show results or not
+  const [title, setTitle] = useState(""); // the name of the result
+  const [pressStatus, setPressStatus] = useState([]) // stores array of keys which have been pressed
+  const [selectTrade, setSelectTrade] = useState(true) // whether to edit the trade or receive inventory
+  const [toTradeElements, setToTradeElements] = useState([]) // elements contained in the trade inventory
+  const [toReceiveElements, setToReceiveElements] = useState([]) // elements contained in the receive inventory
 
   const onChange = (event) => {
     setValue(event.target.value);
   };
 
+  const selectToTrade = () => {
+    setSelectTrade(true)
+  }
+
+  const selectToReceive = () => {
+    setSelectTrade(false)
+  }
+
+  const removeElementTrade = () => {
+    console.log('I was pressed')
+  }
+
+  const removeElementReceive = () => {
+
+  }
+
+  const toggleSelection = (key, name, image, pressed) => {
+    console.log(key)
+    if (pressStatus.indexOf(key) === -1) {
+      setPressStatus([...pressStatus, key])
+      if (selectTrade) {
+        setToTradeElements([...toTradeElements, <Item name = {name} image = {image} pressed = {pressed} key = {key} onClick = {() => removeElementTrade()}/>]) // still need to set onclick
+      } else {
+        setToReceiveElements([...toReceiveElements, <Item name = {name} image = {image} pressed = {pressed} key = {key} onClick = {() => removeElementReceive()}/>])
+      } 
+    } else {
+      let temp = [...pressStatus];
+      temp.splice(pressStatus.indexOf(key), 1)
+      setPressStatus(temp)
+    }
+  }
+
+  const toggleSelectionStore = (name, image) => { // unfortunately does not keep track of keys, thus the list of keys in the selected inventory is incomplete
+    if (selectTrade) {
+      setToTradeElements([...toTradeElements, <Item name = {name} image = {image} onClick = {() => removeElementTrade()}/>]) // still need to set onclick
+    } else {
+      setToReceiveElements([...toReceiveElements, <Item name = {name} image = {image} onClick = {() => removeElementReceive()}/>])
+    } 
+  }
+
   const onSearch = (searchTerm) => {
     setValue(searchTerm);
-    // our api to fetch the search result
-    console.log("search ", searchTerm);
+    setShowResults(true);
+    setTitle(searchTerm)
   };
 
   return (
@@ -72,8 +120,10 @@ function ListingCreation() {
                         return(
                             <Item 
                             name = {findNameUsingClass(prop.classid)}
-                            image = {findImageUsingClass(prop.classid)}
+                            image = {`url(https://steamcommunity-a.akamaihd.net/economy/image/${findImageUsingClass(prop.classid)})`}
                             key = {key}
+                            pressed = {pressStatus.indexOf(key) !== -1}
+                            onClick = {() => toggleSelection(key, findNameUsingClass(prop.classid), `url(https://steamcommunity-a.akamaihd.net/economy/image/${findImageUsingClass(prop.classid)})`, pressStatus.indexOf(key) !== -1)}
                             />
                         )
                       }
@@ -109,41 +159,45 @@ function ListingCreation() {
             ))}
           </div>
         </div>
-          <div className = 'inventory'>
-            <div class="item">1</div>
-            <div class="item">2</div>
-            <div class="item">3</div>  
-            <div class="item">4</div>
-            <div class="item">5</div>
-            <div class="item">6</div>  
-            <div class="item">7</div>
-            <div class="item">8</div>
-            <div class="item">9</div>
-            <div class="item">5</div>
-            <div class="item">6</div>  
-            <div class="item">7</div>
-            <div class="item">8</div>
-            <div class="item">9</div>
-            <div class="item">7</div>
-            <div class="item">8</div>
-            <div class="item">9</div>
-            <div class="item">5</div>
-            <div class="item">6</div>  
-            <div class="item">7</div>
-            <div class="item">8</div>
-            <div class="item">9</div>     
+          <div className = 'inventory2'>
+            {showResults ? 
+            <Item name = {title}
+            image = {`url(${data[value]})`}
+            onClick = {() => toggleSelectionStore(title, `url(${data[value]})`)}
+            />
+             : null} 
           </div>
         </div>
       </div>
       <div className = 'items-selected'>
         <div className = 'items-to-trade'>
-
+            <div className = {selectTrade ? 'inventory3Active' : 'inventory3'} onClick = {() => selectToTrade()}>
+              {toTradeElements}
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+            </div>
         </div>
         <div className = 'arrow'>
-          <FontAwesomeIcon icon={faArrowRightArrowLeft} size="7x" />
+          <FontAwesomeIcon className = 'arrow-icon' icon={faArrowRightArrowLeft} size="7x" />
         </div>
         <div className = 'items-to-receive'>
-
+            <div className = {selectTrade ? 'inventory4' : 'inventory4Active'} onClick = {() => selectToReceive()}>
+              {toReceiveElements}
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+              <Item></Item>
+            </div>
         </div>
       </div>
     </div>

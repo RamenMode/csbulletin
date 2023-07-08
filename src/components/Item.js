@@ -3,10 +3,15 @@ import './Item.css'
 
 export const Item = ({
     image,
-    name
+    name,
+    onClick,
+    key,
+    pressed
 }) => {
     return(
-        <div style = {{backgroundImage: `url(https://steamcommunity-a.akamaihd.net/economy/image/${image})`, backgroundRepeat: 'no-repeat'}} class="item">{name}</div>
+        <>
+        {pressed ? null : <button style = {{backgroundImage: image, backgroundRepeat: 'no-repeat'}} class="item" onClick = {onClick}>{name}</button>}
+        </>
     )
 }
 

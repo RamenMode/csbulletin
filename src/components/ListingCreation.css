@@ -66,6 +66,87 @@
     overflow-y: scroll;
 }
 
+.inventory2 {
+    height: 50vh;
+    width: 90%;
+    background-color: #212122;
+    border-radius: 5px;
+    margin-top: 36px;
+    scrollbar-color: blue;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.inventory3 {
+    height: 20vh;
+    width: 45vw;
+    background-color: #212122;
+    border-radius: 5px;
+    margin-top: 40px;
+    scrollbar-color: blue;
+    display: grid;
+    grid-auto-flow: column;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    grid-gap: 10px;
+    border-width: 0px;   
+}
+
+.inventory3Active {
+    height: 20vh;
+    width: 45vw;
+    background-color: #212122;
+    border-radius: 5px;
+    border-width:2px;
+    border-style:solid;
+    border-color:yellow;
+    margin-top: 40px;
+    display: grid;
+    grid-auto-flow: column;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    grid-gap: 10px;   
+}
+
+.inventory4 {
+    height: 20vh;
+    width: 45vw;
+    background-color: #212122;
+    border-radius: 5px;
+    margin-top: 40px;
+    scrollbar-color: blue;
+    border-width: 0px;
+    display: grid;
+    grid-auto-flow: column;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    grid-gap: 10px;  
+}
+
+.inventory4Active {
+    height: 20vh;
+    width: 45vw;
+    background-color: #212122;
+    border-radius: 5px;
+    margin-top: 40px;
+    scrollbar-color: blue;
+    border-width:2px;
+    border-style:solid;
+    border-color:yellow;
+    display: grid;
+    grid-auto-flow: column;
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    grid-gap: 10px;  
+}
+
 ::-webkit-scrollbar {
     width: 10px;
   }
@@ -88,20 +169,29 @@
 
 .items-to-receive {
     flex: 1;
-    background-color: palegoldenrod
+    display: flex;
+    background-color: #333333;
+    justify-content: center;
 }
 
 .arrow {
-    flex: 0.3;
-    background-color: #212122;
+    flex: 0.1;
+    background-color: #333333;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.arrow-icon {
+    margin-top: 120px;
 }
 
 .items-to-trade {
     flex: 1;
-    background-color: purple
+    display: flex;
+    background-color: #333333;
+    
+    justify-content: center;
 }
 
 .search-container {

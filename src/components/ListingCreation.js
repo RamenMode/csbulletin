@@ -8,6 +8,7 @@ import { setInventory } from '../redux/counter.js';
 import { v4 as uuid } from 'uuid';
 var data = require("../moreAssets/itemlinkconverter.json");
 
+
 function ListingCreation() {
 
   //const userStatus = useSelector((state) => state.user.value)
@@ -35,6 +36,7 @@ function ListingCreation() {
           console.error('Request failed', err)
         })
   }
+
 
 
   function findNameUsingClass(classid) {
@@ -69,12 +71,20 @@ function ListingCreation() {
     setSelectTrade(false)
   }
 
-  const removeElementTrade = () => {
+  const removeElementTrade = (key) => {
     console.log('I was pressed')
+    for (const element of toTradeElements) {
+      console.log(element)
+    }
+    setToTradeElements(toTradeElements => toTradeElements.filter((item) => item.key != key))
   }
 
-  const removeElementReceive = () => {
-
+  const removeElementReceive = (key) => {
+    console.log('I was pressed')
+    for (const element of toReceiveElements) {
+      console.log(element)
+    }
+    setToReceiveElements(toReceiveElements => toReceiveElements.filter((item) => item.key != key))
   }
 
   const toggleSelection = (key, name, image, pressed) => {
@@ -82,9 +92,9 @@ function ListingCreation() {
     if (pressStatus.indexOf(key) === -1) {
       setPressStatus([...pressStatus, key])
       if (selectTrade) {
-        setToTradeElements([...toTradeElements, <Item name = {name} image = {image} pressed = {pressed} key = {key} onClick = {() => removeElementTrade()}/>]) // still need to set onclick
+        setToTradeElements([...toTradeElements, <Item name = {name} image = {image} pressed = {pressed} key = {key} onClick = {() => removeElementTrade(key)}/>]) // still need to set onclick
       } else {
-        setToReceiveElements([...toReceiveElements, <Item name = {name} image = {image} pressed = {pressed} key = {key} onClick = {() => removeElementReceive()}/>])
+        setToReceiveElements([...toReceiveElements, <Item name = {name} image = {image} pressed = {pressed} key = {key} onClick = {() => removeElementReceive(key)}/>])
       } 
     } else {
       let temp = [...pressStatus];
@@ -95,9 +105,11 @@ function ListingCreation() {
 
   const toggleSelectionStore = (name, image) => { // unfortunately does not keep track of keys, thus the list of keys in the selected inventory is incomplete
     if (selectTrade) {
-      setToTradeElements([...toTradeElements, <Item name = {name} image = {image} onClick = {() => removeElementTrade()}/>]) // still need to set onclick
+      let id = uuid()
+      setToTradeElements([...toTradeElements, <Item name = {name} image = {image} key = {id} onClick = {() => removeElementTrade(id)}/>]) // still need to set onclick
     } else {
-      setToReceiveElements([...toReceiveElements, <Item name = {name} image = {image} onClick = {() => removeElementReceive()}/>])
+      let id = uuid()
+      setToReceiveElements([...toReceiveElements, <Item name = {name} image = {image} key = {id} onClick = {() => removeElementReceive(id)}/>])
     } 
   }
 
@@ -160,7 +172,7 @@ function ListingCreation() {
           </div>
         </div>
           <div className = 'inventory2'>
-            {showResults ? 
+            {showResults ?
             <Item name = {title}
             image = {`url(${data[value]})`}
             onClick = {() => toggleSelectionStore(title, `url(${data[value]})`)}

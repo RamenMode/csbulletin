@@ -4,7 +4,8 @@ const initialState = {
   value: '',
   inventory: {
     assets: []
-  }
+  },
+  pressStatus: []
 }
 
 export const userSlice = createSlice({
@@ -23,11 +24,17 @@ export const userSlice = createSlice({
     },
     setInventory: (state, target) => {
       state.inventory = target.payload
+    },
+    setPressStatusAdd: (state, target) => {
+      state.pressStatus.push(target.payload)
+    },
+    setPressStatusRemove: (state, target) => {
+      state.pressStatus.splice(state.pressStatus.indexOf(target.payload), 1)
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setUser, setEmpty, setInventory } = userSlice.actions
+export const { setUser, setEmpty, setInventory, setPressStatusAdd, setPressStatusRemove } = userSlice.actions
 
 export default userSlice.reducer

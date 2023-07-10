@@ -1,10 +1,10 @@
-import React, { useState, useId } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ListingCreation.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import Item from './Item.js'
 import { useSelector, useDispatch } from 'react-redux';
-import { setInventory } from '../redux/counter.js';
+import { setInventory, setPressStatusAdd, setPressStatusRemove } from '../redux/counter.js';
 import { v4 as uuid } from 'uuid';
 var data = require("../moreAssets/itemlinkconverter.json");
 
@@ -13,6 +13,7 @@ function ListingCreation() {
 
   //const userStatus = useSelector((state) => state.user.value)
   const userInventory = useSelector((state) => state.user.inventory)
+  const elementsPressed = useSelector((state) => state.user.pressStatus)
   const dispatch = useDispatch()
 
   const getInventory = () => {
@@ -37,8 +38,6 @@ function ListingCreation() {
         })
   }
 
-
-
   function findNameUsingClass(classid) {
     return userInventory.descriptions.find(item => item.classid == classid).name
   }
@@ -54,10 +53,18 @@ function ListingCreation() {
   const [value, setValue] = useState(""); // value of the search
   const [showResults, setShowResults] = useState(false); // to show results or not
   const [title, setTitle] = useState(""); // the name of the result
-  const [pressStatus, setPressStatus] = useState([]) // stores array of keys which have been pressed
+  //const [pressStatus, setPressStatus] = useState([]) // stores array of keys which have been pressed
   const [selectTrade, setSelectTrade] = useState(true) // whether to edit the trade or receive inventory
   const [toTradeElements, setToTradeElements] = useState([]) // elements contained in the trade inventory
   const [toReceiveElements, setToReceiveElements] = useState([]) // elements contained in the receive inventory
+
+  useEffect(() => {
+    if (Object.keys(data).indexOf(value) == -1) {
+      setShowResults(false)
+    } else {
+      setShowResults(true)
+    }
+  }, [value]);
 
   const onChange = (event) => {
     setValue(event.target.value);
@@ -74,34 +81,26 @@ function ListingCreation() {
   const removeElementTrade = (key, limited) => {
     setToTradeElements(toTradeElements => toTradeElements.filter((item) => item.key != key))
     if (limited) {
-      let temp = [...pressStatus];
-      temp.splice(pressStatus.indexOf(key), 1)
-      setPressStatus(temp)
+      dispatch(setPressStatusRemove(key))
     }
   }
 
   const removeElementReceive = (key, limited) => {
     setToReceiveElements(toReceiveElements => toReceiveElements.filter((item) => item.key != key))
     if (limited) {
-      let temp = [...pressStatus];
-      temp.splice(pressStatus.indexOf(key), 1)
-      setPressStatus(temp)
+      dispatch(setPressStatusRemove(key))
     }
   }
 
   const toggleSelection = (key, name, image, pressed) => {
     console.log(key)
-    if (pressStatus.indexOf(key) === -1) {
-      setPressStatus([...pressStatus, key])
+    if (elementsPressed.indexOf(key) == -1) {
+      dispatch(setPressStatusAdd(key))
       if (selectTrade) {
         setToTradeElements([...toTradeElements, <Item name = {name} image = {image} pressed = {pressed} key = {key} onClick = {() => removeElementTrade(key, true)}/>]) // still need to set onclick
       } else {
         setToReceiveElements([...toReceiveElements, <Item name = {name} image = {image} pressed = {pressed} key = {key} onClick = {() => removeElementReceive(key, true)}/>])
       } 
-    } else {
-      let temp = [...pressStatus];
-      temp.splice(pressStatus.indexOf(key), 1)
-      setPressStatus(temp)
     }
   }
 
@@ -136,8 +135,8 @@ function ListingCreation() {
                             name = {findNameUsingClass(prop.classid)}
                             image = {`url(https://steamcommunity-a.akamaihd.net/economy/image/${findImageUsingClass(prop.classid)})`}
                             key = {key}
-                            pressed = {pressStatus.indexOf(key) !== -1}
-                            onClick = {() => toggleSelection(key, findNameUsingClass(prop.classid), `url(https://steamcommunity-a.akamaihd.net/economy/image/${findImageUsingClass(prop.classid)})`, pressStatus.indexOf(key) !== -1)}
+                            pressed = {elementsPressed.indexOf(key) !== -1}
+                            onClick = {() => toggleSelection(key, findNameUsingClass(prop.classid), `url(https://steamcommunity-a.akamaihd.net/economy/image/${findImageUsingClass(prop.classid)})`, elementsPressed.indexOf(key) !== -1)}
                             />
                         )
                       }
@@ -187,14 +186,6 @@ function ListingCreation() {
         <div className = 'items-to-trade'>
             <div className = {selectTrade ? 'inventory3Active' : 'inventory3'} onClick = {() => selectToTrade()}>
               {toTradeElements}
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
             </div>
         </div>
         <div className = 'arrow'>
@@ -203,14 +194,6 @@ function ListingCreation() {
         <div className = 'items-to-receive'>
             <div className = {selectTrade ? 'inventory4' : 'inventory4Active'} onClick = {() => selectToReceive()}>
               {toReceiveElements}
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
             </div>
         </div>
       </div>

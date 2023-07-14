@@ -6,6 +6,7 @@ import Signup from './components/pages/Signup.js'
 import Faq from './components/pages/Faq.js'
 import Bulletin from './components/pages/Bulletin.js'
 import CreateListing from './components/pages/CreateListing.js'
+import EditProfile from './components/pages/EditProfile.js'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path = '/faq' element = {<Faq/>}/>
           <Route path = '/bulletin' element = {<Bulletin/>}/>
           <Route path = '/createListing' element = {<CreateListing/>}></Route>
+          <Route path = '/editProfile' element = {<EditProfile/>}></Route>
         </Routes>
     </Router>
     </>

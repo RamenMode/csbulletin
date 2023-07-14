@@ -43,7 +43,6 @@ function Navbar() {
     }
     
     useEffect(() => {
-        console.log("Checked")
         showButton()
         checkAuthenticated()
     }, [])
@@ -104,7 +103,7 @@ function Navbar() {
                                 <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
-                    </li> : <a onClick = {profileClicked} className = "profilelink"><img className = "profilepic" src = {`${userStatus}`}/></a>}
+                    </li> : <Link to='/editProfile' onClick = {profileClicked} className = "profilelink"><img className = "profilepic" src = {`${userStatus}`}/></Link>}
             </div>
         </nav>
     </>

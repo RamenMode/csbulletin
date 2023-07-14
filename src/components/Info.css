@@ -1,11 +1,11 @@
-.backgrounder {
+.background1 {
     background-color:#696969;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 110vh;
+    height: 100vh;
     width: 100%;
-    
+    overflow-y: auto;
 }
 
 .container {
@@ -17,15 +17,14 @@
     margin-bottom: auto;
     border-radius: 0%;
     display: flex;
-    
     flex-direction: column;
     margin-top: 100px;
 }
 
-h2 {
+h3 {
     color: white;
 }
-h1 {
+h2 {
     color: white;
 }
 p {

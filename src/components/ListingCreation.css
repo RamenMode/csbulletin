@@ -37,14 +37,14 @@
     flex-direction: row;
 }
 .get-inv-button {
-    height: 3vh;
+    height: 5vh;
     width: 20%;
     background-color: #212122;
-    margin-top: 50px;
+    margin-top: 3vh;
     text-align: center;
     font-weight: bold;
     font-size: large;
-    line-height: 3vh;
+    line-height: 5vh;
     text-decoration: none;
     border-radius: 3px;
     border-style: solid;
@@ -57,7 +57,7 @@
     width: 90%;
     background-color: #212122;
     border-radius: 5px;
-    margin-top: 40px;
+    margin-top: 3vh;
     scrollbar-color: blue;
 
     display: grid;
@@ -71,21 +71,22 @@
     width: 90%;
     background-color: #212122;
     border-radius: 5px;
-    margin-top: 36px;
+    margin-top: 3vh;
     scrollbar-color: blue;
 
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     padding: 10px;
     overflow-y: scroll;
+    
 }
 
 .inventory3 {
-    height: 20vh;
+    height: 23vh;
     width: 45vw;
     background-color: #212122;
     border-radius: 5px;
-    margin-top: 40px;
+    margin-top: 5px;
     scrollbar-color: blue;
     display: grid;
     grid-auto-flow: column;
@@ -97,14 +98,14 @@
 }
 
 .inventory3Active {
-    height: 20vh;
+    height: 23vh;
     width: 45vw;
     background-color: #212122;
     border-radius: 5px;
     border-width:2px;
     border-style:solid;
     border-color:yellow;
-    margin-top: 40px;
+    margin-top: 5px;
     display: grid;
     grid-auto-flow: column;
     padding: 10px;
@@ -114,11 +115,11 @@
 }
 
 .inventory4 {
-    height: 20vh;
+    height: 23vh;
     width: 45vw;
     background-color: #212122;
     border-radius: 5px;
-    margin-top: 40px;
+    margin-top: 5px;
     scrollbar-color: blue;
     border-width: 0px;
     display: grid;
@@ -130,11 +131,11 @@
 }
 
 .inventory4Active {
-    height: 20vh;
+    height: 23vh;
     width: 45vw;
     background-color: #212122;
     border-radius: 5px;
-    margin-top: 40px;
+    margin-top: 5px;
     scrollbar-color: blue;
     border-width:2px;
     border-style:solid;
@@ -183,7 +184,7 @@
 }
 
 .arrow-icon {
-    margin-top: 120px;
+    margin-top: 40px;
 }
 
 .items-to-trade {
@@ -197,7 +198,7 @@
 .search-container {
     display: flex;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 3vh;
     text-align: center;
     font-weight: bold;
     font-size: large;
@@ -207,6 +208,7 @@
 
 .search-input {
     padding: 10px;
+    height: 5vh;
     border: 1px solid #212122;
     border-radius: 5px;
     width: 250px;
@@ -217,6 +219,7 @@
 .search-button {
     background-color: #212122;
     color: white;
+    height: 5vh;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

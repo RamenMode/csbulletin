@@ -39,7 +39,6 @@ function Navbar() {
         })
         .then(response => response.json())
         .then(text => text ? dispatch(setUser(text.photos[1].value)) : dispatch(setEmpty()))
-        
     }
     
     useEffect(() => {

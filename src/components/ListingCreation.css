@@ -82,8 +82,9 @@
 }
 
 .inventory3 {
+    margin-left: 1vw;
     height: 23vh;
-    width: 45vw;
+    width: 35vw;
     background-color: #212122;
     border-radius: 5px;
     margin-top: 5px;
@@ -98,8 +99,9 @@
 }
 
 .inventory3Active {
+    margin-left: 1vw;
     height: 23vh;
-    width: 45vw;
+    width: 35vw;
     background-color: #212122;
     border-radius: 5px;
     border-width:2px;
@@ -116,7 +118,7 @@
 
 .inventory4 {
     height: 23vh;
-    width: 45vw;
+    width: 35vw;
     background-color: #212122;
     border-radius: 5px;
     margin-top: 5px;
@@ -132,7 +134,7 @@
 
 .inventory4Active {
     height: 23vh;
-    width: 45vw;
+    width: 35vw;
     background-color: #212122;
     border-radius: 5px;
     margin-top: 5px;
@@ -184,7 +186,9 @@
 }
 
 .arrow-icon {
-    margin-top: 40px;
+    margin-top: 7vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
 }
 
 .items-to-trade {
@@ -193,6 +197,13 @@
     background-color: #333333;
     
     justify-content: center;
+}
+
+.notes-submit-container {
+    flex: 10;
+    background-color: #333333;
+    display: flex;
+    flex-direction: column;
 }
 
 .search-container {
@@ -256,3 +267,32 @@ body {
 }
 
 a:visited { text-decoration: none; color:white; }
+
+.notes-submission {
+    
+    padding: 15px;
+    background-color: black;
+    height: 17vh;
+    border-radius: 5px;
+    border-width: 0px;
+    margin-top: 5px;
+    margin-left: 1vw;
+    color: white;
+    
+}
+
+.submit-listing {
+    
+    background-color: #212122;
+    border-width: 0px;
+    margin-top: 1vh;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    height: 5vh;
+    margin-left: 1vw;
+    border-radius: 5px;
+}

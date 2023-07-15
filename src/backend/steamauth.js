@@ -85,7 +85,7 @@ app.get('/loggedin', (req, res) => {
     res.send(req.isAuthenticated())
 })
 
-app.listen(port, () => console.log(`Express app running on port ${port}!`));
+app.listen(port, () => console.log(`Authentication running on port ${port}!`));
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }

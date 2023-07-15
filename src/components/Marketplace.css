@@ -44,41 +44,6 @@
     align-items: flex-start;
 }
 
-.listing1 {
-    margin-top: 20px;
-    height: 15vh;
-    max-width: 100%;
-    background-color: #212122;
-    margin-left: 550px;
-    display: flex;
-    flex-direction: row;
-}
-
-.profile {
-    flex: 1;
-    background-color: red;
-}
-
-.trading {
-    flex: 1;
-    background-color: green;
-}
-
-.receiving {
-    flex: 1;
-    background-color: greenyellow;
-}
-
-.notes {
-    flex: 1;
-    background-color: purple;
-}
-
-.tradelink {
-    flex: 1;
-    background-color: cyan;
-}
-
 .listing {
     margin-top: 20px;
     height: 15vh;

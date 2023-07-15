@@ -24,13 +24,11 @@
   
 
 .myprofile-text {
-    left: 0px;
-    position: absolute;
+    margin: 0 auto;
+    position: static;
     color: white;
     font-weight: 500;
     font-size: 28px;
-    right: 39%;
-    top: 0px;
 }
 
 .tradelink-text {

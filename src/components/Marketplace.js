@@ -1,8 +1,15 @@
 import React from 'react'
 import './Marketplace.css'
 import { Link } from 'react-router-dom';
+import Listing from './Listing.js'
+
+// temporary imports for development purposes
+import { useSelector, useDispatch } from 'react-redux';
 
 function Marketplace() {
+
+  const userStatus = useSelector((state) => state.user.value)
+
   return (
     <div className = 'background'>
         <div className = 'left-box'>
@@ -18,63 +25,17 @@ function Marketplace() {
             </div>
         </div>
         <div className = 'right-box'>
-            <div className = 'listing1'>
-              <div className = 'profile'>
-
-              </div>
-              <div className = 'trading'>
-
-              </div>
-              <div className = 'receiving'>
-
-              </div>
-              <div className = 'notes'>
-
-              </div>
-              <div className = 'tradelink'>
-
-              </div>
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            <div className = 'listing1'>
-
-            </div>
-            
-            
-
-            
+            <Listing
+              ProfilePic = {userStatus}
+              Tradelink = "https://steamcommunity.com/tradeoffer/new/?partner=188118015&token=f2F4wEbJ"
+              Notes = 'gehprwmgpowhrmpowemhwpohmrpeomhpeomrhpoemrphoemprohmepormhpeormphoemrphomepromhepor3t4igh35orneoihnroineoriernhowienrhoeortihnoeritnhoeirtnoeihrntohinerotihneortihnoiretrthertherthertherthertherthertherthertherthertherthertherthertherthertherthrethertherthertherthertherthertherthertherthertherthertreherthertherthertherthertherthrteherth'
+            />
+            <Listing/>
+            <Listing/>
+            <Listing/>
+            <Listing/>
+            <Listing/>
+            <Listing/>
         </div>
     </div>
   )

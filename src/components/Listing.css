@@ -1,0 +1,75 @@
+.profile {
+    flex: 1;
+    background-color: #212122;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profilepic-listing {
+    border-radius: 50%;
+    width: auto;
+    height: 10vh;
+    
+}
+
+.trading {
+    flex: 1;
+    background-color: #212122;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.receiving {
+    flex: 1;
+    background-color: #212122;
+}
+
+.notes {
+    flex: 1;
+    background-color: #212122;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-all;
+    flex-direction: column;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.notes-text {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    font-size: 1em;
+}
+
+.notes-h3 {
+    
+}
+
+.tradelink {
+    flex: 1;
+    background-color: #212122;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-all;
+    flex-direction: column;
+}
+
+.listing1 {
+    margin-top: 20px;
+    height: 15vh;
+    max-width: 100%;
+    background-color: #212122;
+    margin-left: 550px;
+    display: flex;
+    flex-direction: row;
+    
+}

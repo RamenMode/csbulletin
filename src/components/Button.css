@@ -33,6 +33,7 @@
   .btn--large {
     padding: 12px 26px;
     font-size: 20px;
+    font-weight: 700;
   }
   
   .btn--large:hover,

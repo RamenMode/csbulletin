@@ -192,9 +192,16 @@ function ListingCreation() {
           <FontAwesomeIcon className = 'arrow-icon' icon={faArrowRightArrowLeft} size="7x" />
         </div>
         <div className = 'items-to-receive'>
+            
             <div className = {selectTrade ? 'inventory4' : 'inventory4Active'} onClick = {() => selectToReceive()}>
               {toReceiveElements}
             </div>
+        </div>
+        <div className = 'notes-submit-container'>
+          <textarea placeholder = "Add additional comments" className = 'notes-submission'></textarea>
+          <button className = 'submit-listing'>
+            Submit
+          </button>
         </div>
       </div>
     </div>

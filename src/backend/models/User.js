@@ -4,12 +4,12 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
     SteamID: {
-        type: String,
+        type: Number,
         required: true
     },
     ProfilePic: {
         type: String,
-        required: true
+        required: false
     },
     Listings: {
         type: 

@@ -1,0 +1,9 @@
+.backgroundeditlisting {
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    overflow-y: auto;
+    justify-content: flex-start;
+}

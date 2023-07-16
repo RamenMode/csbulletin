@@ -29,6 +29,11 @@ function Listing({
               <div className = 'tradelink'>
                 <p className = 'notes-text'>{Tradelink}</p>
               </div>
+              {type != 1 ? <div className = 'cancel-box'>
+                <div className="Listing-x-cancel" onClick = {() => console.log('presseds')}>
+                  <i className="fa-light fa-xmark" style = {{fontSize: "4em"}}></i>
+                </div>
+              </div> : null}
             </div>
   )
 }

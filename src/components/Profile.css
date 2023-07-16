@@ -21,20 +21,19 @@
     flex-direction: column;
 }
 
-  
-
-.myprofile-text {
-    margin: 0 auto;
-    position: static;
-    color: white;
-    font-weight: 500;
-    font-size: 28px;
+.profile-box {
+    width: 100%;
+    height: 20vh;
+    background-color: #212122;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
 }
 
 .tradelink-text {
     color: white;
     position: relative;
-    margin-top: 50px;
+    margin-left: 1.3vh;
 }
 
 .tradelink-container {
@@ -42,6 +41,7 @@
     margin-top: 10px;
     display: flex;
     flex-direction: row;
+    margin-left: 1vh;
 }
 
 #tradelink-input {
@@ -53,18 +53,40 @@
     font-size: 16px;
     color: #000;
     background-color: black;
-    margin-top: 5px;
     color: white;
 }
 
 .enter-button-profile {
-    background-color: #212122;
+    background-color: BLACK;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-left: 10px;
-    margin-top: 5px;
+    height: 40px;
 }
 
+.profile-picture-file {
+    border-radius: 50%;
+    height: 10vh;
+    width: 10vh;
+    margin-top: 1vh;
+    margin-left: 1vh;
+}
+
+.top-profile-box {
+    width: 100%;
+    height: 13vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.name-text {
+    font-size: 2.5em;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 11vh;  
+    margin-left: 1vw;
+}

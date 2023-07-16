@@ -20,22 +20,46 @@ function Marketplace() {
             </div>
             <div className = 'list'>
               <div className = 'list-box'>
+                <Link className = 'list-button list-button-text' to = '/manageListing'>Manage your listings</Link>'
                 <Link className = 'list-button list-button-text' to = '/createListing'>List a Trade</Link>
               </div>
             </div>
         </div>
         <div className = 'right-box'>
             <Listing
+              type = {1}
               ProfilePic = {userStatus}
               Tradelink = "https://steamcommunity.com/tradeoffer/new/?partner=188118015&token=f2F4wEbJ"
               Notes = 'gehprwmgpowhrmpowemhwpohmrpeomhpeomrhpoemrphoemprohmepormhpeormphoemrphomepromhepor3t4igh35orneoihnroineoriernhowienrhoeortihnoeritnhoeirtnoeihrntohinerotihneortihnoiretrthertherthertherthertherthertherthertherthertherthertherthertherthertherthrethertherthertherthertherthertherthertherthertherthertreherthertherthertherthertherthrteherth'
             />
-            <Listing/>
-            <Listing/>
-            <Listing/>
-            <Listing/>
-            <Listing/>
-            <Listing/>
+            <Listing
+              type = {1}
+            />
+            <Listing
+              type = {1}
+            />
+            <Listing
+              type = {1}
+            />
+            <Listing
+              type = {1}
+            />
+            <Listing
+              type = {1}
+            />
+            <Listing
+              type = {1}
+            />
+            <Listing
+              type = {1}
+            />
+            <Listing
+              type = {1}
+            />
+            <Listing
+              type = {1}
+            />
+            
         </div>
     </div>
   )

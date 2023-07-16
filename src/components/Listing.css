@@ -49,10 +49,6 @@
     font-size: 1em;
 }
 
-.notes-h3 {
-    
-}
-
 .tradelink {
     flex: 1;
     background-color: #212122;
@@ -71,5 +67,14 @@
     margin-left: 550px;
     display: flex;
     flex-direction: row;
-    
+}
+
+.listing2 {
+    margin-top: 20px;
+    height: 15vh;
+    max-width: 100%;
+    background-color: #212122;
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: row;
 }

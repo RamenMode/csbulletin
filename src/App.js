@@ -7,6 +7,7 @@ import Faq from './components/pages/Faq.js'
 import Bulletin from './components/pages/Bulletin.js'
 import CreateListing from './components/pages/CreateListing.js'
 import EditProfile from './components/pages/EditProfile.js'
+import ManageListing from './components/pages/ManageListing.js'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path = '/bulletin' element = {<Bulletin/>}/>
           <Route path = '/createListing' element = {<CreateListing/>}></Route>
           <Route path = '/editProfile' element = {<EditProfile/>}></Route>
+          <Route path = '/manageListing' element = {<ManageListing/>}></Route>
         </Routes>
     </Router>
     </>

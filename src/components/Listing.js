@@ -3,6 +3,7 @@ import './Listing.css'
 import ReactMarkdown from "react-markdown"
 
 function Listing({
+    type,
     ProfilePic,
     ItemsTrading,
     ItemsReceiving,
@@ -11,7 +12,7 @@ function Listing({
 }) {
 
   return (
-    <div className = 'listing1'>
+    <div className = {type == 1 ? 'listing1' : 'listing2'}>
               <div className = 'profile'>
                 <img className = "profilepic-listing" src = {`${ProfilePic}`}/>
               </div>
@@ -22,7 +23,7 @@ function Listing({
 
               </div>
               <div className = 'notes'>
-                <h3 className = 'notes-h3'>Notes</h3>
+                <h3 className = 'notes-h3'>{Notes ? 'Notes': null}</h3>
                 <p className = 'notes-text'>{Notes}</p>
               </div>
               <div className = 'tradelink'>

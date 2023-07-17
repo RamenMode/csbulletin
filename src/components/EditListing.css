@@ -6,4 +6,5 @@
     background-color: black;
     overflow-y: auto;
     justify-content: flex-start;
+    text-align: center;
 }

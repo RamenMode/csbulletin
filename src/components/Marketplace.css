@@ -29,7 +29,7 @@
 }
 
 .search {
-    flex: 1;
+    flex: 0.66;
     background-color: #020403;
     display: flex;
     justify-content: center;
@@ -64,7 +64,7 @@
     height: 60%;
     width: 450px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 }
@@ -74,9 +74,12 @@
     height: 50%;
     background-color: #212122;
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    top: 20px;
+    
 }
 
 .list-button-text {

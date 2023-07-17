@@ -1,0 +1,9 @@
+To be implemented for backend:
+
+1. Validate create listing form and send to api to interact and add listing to user's MongoDB
+2. Allow tradelink to be updated in the profile
+3. Allow users to delete listings
+4. Allow listings to be clickable and fully viewable
+5. Show listings in the bulletin
+6. Implement search for listings
+7. Add SteamID on login

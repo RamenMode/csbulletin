@@ -6,7 +6,9 @@ import Item from './Item.js'
 import { useSelector, useDispatch } from 'react-redux';
 import { setInventory, setPressStatusAdd, setPressStatusRemove } from '../redux/counter.js';
 import { v4 as uuid } from 'uuid';
+
 var data = require("../moreAssets/itemlinkconverter.json");
+
 
 
 function ListingCreation() {
@@ -37,6 +39,47 @@ function ListingCreation() {
           console.error('Request failed', err)
         })
   }
+  
+
+  async function sendListingData() {
+    console.log(toTradeElements)
+    console.log(toReceiveElements)
+    const toTradeElementsText = toTradeElements.map((component) => component.props.name);
+    const toTradeElementsImage = toTradeElements.map((component) => component.props.image);
+    const toReceiveElementsText = toReceiveElements.map((component) => component.props.name);
+    const toReceiveElementsImage = toReceiveElements.map((component) => component.props.image);
+    console.log(toTradeElementsText)
+    console.log(toTradeElementsImage)
+    console.log(toReceiveElementsText)
+    console.log(toReceiveElementsImage)
+    console.log(noteData)
+    let steamid = await fetch('http://localhost:4000/steamid', {
+      credentials: "include"
+    })
+    let steamidjson = await steamid.json()
+    console.log("this is the steamid source", steamidjson)
+    fetch('http://localhost:5500/sendListingData', { // modify for different localhost
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify({
+        ToTradeElementsText: toTradeElementsText,
+        ToTradeElementsImage: toTradeElementsImage,
+        ToReceiveElementsText: toReceiveElementsText,
+        ToReceiveElementsImage: toReceiveElementsImage,
+        Notes: noteData,
+        UserSteamID: steamidjson
+      })
+    })
+    //.then(response => response.json())
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }})
+    .then(response => console.log(response))
+  }
 
   function findNameUsingClass(classid) {
     return userInventory.descriptions.find(item => item.classid == classid).name
@@ -57,6 +100,8 @@ function ListingCreation() {
   const [selectTrade, setSelectTrade] = useState(true) // whether to edit the trade or receive inventory
   const [toTradeElements, setToTradeElements] = useState([]) // elements contained in the trade inventory
   const [toReceiveElements, setToReceiveElements] = useState([]) // elements contained in the receive inventory
+  const [noteData, setNoteData] = useState('')
+
 
   useEffect(() => {
     if (Object.keys(data).indexOf(value) == -1) {
@@ -69,6 +114,11 @@ function ListingCreation() {
   const onChange = (event) => {
     setValue(event.target.value);
   };
+
+  const onChangeNotes = (event) => {
+    setNoteData((noteData) => event.target.value)
+    console.log(noteData)
+  }
 
   const selectToTrade = () => {
     setSelectTrade(true)
@@ -198,8 +248,8 @@ function ListingCreation() {
             </div>
         </div>
         <div className = 'notes-submit-container'>
-          <textarea placeholder = "Add additional comments" className = 'notes-submission'></textarea>
-          <button className = 'submit-listing'>
+          <textarea placeholder = "Add additional comments" className = 'notes-submission' onChange={onChangeNotes}></textarea>
+          <button className = 'submit-listing' onClick = {() => {sendListingData()}}>
             Submit
           </button>
         </div>

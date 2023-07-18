@@ -14,18 +14,22 @@ const userSchema = new Schema({
     Listings: {
         type: 
             [{
-            ItemsToTrade: [{ // to oerwrite add another set of brackets after colon and introduce key of type and add default aftre comma
-                image: String,
-                name: String,
-            }],
+            ItemsToTradeImage: [ // to oerwrite add another set of brackets after colon and introduce key of type and add default aftre comma
+                String
+            ],
+            ItemsToTradeText: [
+                String
+            ],
             Notes: {
                 type: String,
                 required: false
             },
-            ItemsToReceive: [{
-                image: String,
-                name: String,
-            }]
+            ItemsToReceiveImage: [
+                String
+            ],
+            ItemsToReceiveText: [
+                String
+            ]
             }],
         required: false
     }

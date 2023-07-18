@@ -13,7 +13,7 @@ var port = 4000;
 // set up express app
 var app = express(); // check here 2nd, didn't set up views 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "http://localhost:5500", "http://localhost:4000"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true // bypass limitations of multiple ports
 }));
@@ -92,6 +92,10 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/');
   
 }
+
+app.get('/steamid', (req, res) => {
+    res.send(req.user._json.steamid)
+})
 
 app.get('/test', (req, res) => {
     res.send('test complete')

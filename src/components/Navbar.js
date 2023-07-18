@@ -80,14 +80,14 @@ function Navbar() {
                         </a>
                     </li> : null}
                     {button ? null : userStatus ? <li className = 'nav-item-modified'>
-                        <a href="http://localhost:4000/logout" className="steambutton">
+                        <a href="http://localhost:4000/logout" className="steambutton" >
                             <span>Sign Out</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
                     </li> : <li className = 'nav-item-modified'>
-                        <a href="http://localhost:4000/auth/steam" className="steambutton">
+                        <a className="steambutton" href = "http://localhost:4000/auth/steam">
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
@@ -96,7 +96,7 @@ function Navbar() {
                     </li>}
                 </ul>
                 {!button ? null : !userStatus ? <li className = 'nav-item-button'>
-                        <a href="http://localhost:4000/auth/steam" className="steambutton">
+                        <a className="steambutton" href = "http://localhost:4000/auth/steam">
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>

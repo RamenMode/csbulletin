@@ -32,6 +32,10 @@ const userSchema = new Schema({
             ]
             }],
         required: false
+    },
+    Tradelink: {
+        type: String,
+        required: false
     }
 }, { timestamps: true })
 

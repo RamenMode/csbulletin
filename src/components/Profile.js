@@ -5,10 +5,50 @@ import { useSelector, useDispatch } from 'react-redux';
 function Profile() {
 
     const [steamName, setSteamName] = useState('')
+    //const [tradelink, setTradelink] = useState('')
+    const [tradelinkInitial, setTradelinkInitial] = useState('')
 
-    function submitTradelink() {
-        
+    function onChange(event) {
+        setTradelinkInitial(event.target.value)
     }
+
+    async function submitTradelink() {
+        let steamid = await fetch('http://localhost:4000/steamid', {
+            credentials: "include"
+        })
+        let steamidjson = await steamid.json()
+        fetch('http://localhost:5500/addTradelink', {
+            credentials: 'include',
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                SteamID: steamidjson,
+                Tradelink: tradelinkInitial
+            })
+        })
+        .then(response => response.json())
+        .then(response => console.log(response))
+    }
+
+    useEffect(() => {
+
+        fetch('http://localhost:4000/steamid', {
+            credentials: "include"
+        }).then(response => response.json())
+        .then(steamid => fetch('http://localhost:5500/getTradelink', {
+            credentials: 'include',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                SteamID: steamid
+            })
+        })).then(response => response.json())
+        .then(response => setTradelinkInitial(response.tradelink))
+    }, [])
 
     useEffect(() => {
         fetch('http://localhost:4000/user', {
@@ -32,7 +72,7 @@ function Profile() {
                     Tradelink
                 </span>
                 <div className = 'tradelink-container'>
-                    <input type="text" id="tradelink-input" placeholder="Type in your tradelink"/>
+                    <input type="text" id="tradelink-input" placeholder={tradelinkInitial ? tradelinkInitial : 'Type in your tradelink'} value = {tradelinkInitial} onChange = {onChange}/>
                     <button class="enter-button-profile" onClick = {() => submitTradelink()}>Save</button>
                 </div>
             </div>

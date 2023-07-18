@@ -45,12 +45,46 @@ async function run() {
   }
 }
 
-app.post('/findUser', async (req, res) => {
+app.post('/getTradelink', async (req, res) => {
   try {
     const {SteamID} = req.body
     const database = client.db('Users');
     const listings = database.collection('users');
-    console.log(SteamID)
+    const query = { SteamID: SteamID }
+    const listing = await listings.findOne(query)
+    console.log(listing)
+    res.status(200).send({tradelink: listing.Tradelink})
+  } catch (error) {
+    res.status(400).send({message: error.message})
+  }
+})
+
+app.post('/addTradelink', async (req, res) => {
+  try {
+    const {SteamID, Tradelink} = req.body
+    const database = client.db('Users');
+    const listings = database.collection('users');
+    const query = { SteamID: SteamID }
+    const listing = await listings.updateOne(query, {
+      $set: {
+        Tradelink: Tradelink
+      },
+      $currentDate: {
+        lastModified: true
+      }
+    })
+    console.log(listing)
+    res.status(200).send({message: "Tradelink Added"})
+  } catch (error) {
+    res.send({error: error.message})
+  }
+})
+
+app.post('/findUser', async (req, res) => {
+  try {
+    const {SteamID} = req.body
+    const database = client.db('Users')
+    const listings = database.collection('users')
     const query = { SteamID: SteamID }
     const listing = await listings.findOne(query)
     console.log(listing)
@@ -77,11 +111,6 @@ app.post('/addPost', async (req, res) => {
       })
     })*/
     //userObject = JSON.parse(userExists) // possibly not needed
-    console.log(TradingElementsImage)
-    console.log(TradingElementsText)
-    console.log(Notes)
-    console.log(ReceivingElementsImage)
-    console.log(ReceivingElementsText)
     const listing = await listings.updateOne(query, {
       $push: {
         Listings: {

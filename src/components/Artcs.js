@@ -5,8 +5,8 @@ import './Artcs.css';
 import './Navbar.js'
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, setEmpty } from '../redux/counter.js'
-
-
+import video from '../moreAssets/swat-counter-strike-global-offensive-4k-live-wallpaper.mp4'
+import video2 from '../moreAssets/video-2.mp4'
 function Artcs() {
 
   const userStatus = useSelector((state) => state.user.value)
@@ -21,10 +21,14 @@ function Artcs() {
   }
 
   return (
+    <>
     <div className='hero-container'>
-      <h1>A P2P Trading Forum</h1>
-      <p style = {{color: '#fff'}}>No fees, no middleman</p>
-      <div className='hero-btns'>
+      <video autoPlay loop muted id = "video">
+          <source src = {video} type = 'video/mp4'/>
+      </video>
+      <h1 style = {{zIndex: 3, color: '#fff'}} >A P2P Trading Forum</h1>
+      <p style = {{color: '#fff', zIndex: 3}}>No fees, no middleman</p>
+      <div className='hero-btns' style = {{zIndex: 3}}>
         <Button
           className='btns'
           buttonStyle='btn--primary'
@@ -35,6 +39,7 @@ function Artcs() {
         </Button>
       </div>
     </div>
+    </>
   );
 }
 

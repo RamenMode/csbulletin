@@ -14,6 +14,7 @@ var data = require("../moreAssets/itemlinkconverter.json");
 function ListingCreation() {
 
   //const userStatus = useSelector((state) => state.user.value)
+  const [hasTradelink, setHasTradelink] = useState(false)
   const userInventory = useSelector((state) => state.user.inventory)
   const elementsPressed = useSelector((state) => state.user.pressStatus)
   const dispatch = useDispatch()
@@ -39,23 +40,44 @@ function ListingCreation() {
           console.error('Request failed', err)
         })
   }
+
+  useEffect(() => {
+    fetch('http://localhost:4000/steamid', {
+            credentials: "include"
+        }).then(response => response.json())
+        .then(steamid => fetch('http://localhost:5500/getTradelink', {
+            credentials: 'include',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                SteamID: steamid
+            })
+        })).then(response => response.json())
+        .then(response => {
+          if (Object.keys(response).length != 0) {
+            setHasTradelink(true)
+            console.log('I set the tradlein status', )
+          }
+        })
+  }, [])
   
 
   async function sendListingData() {
-    console.log(toTradeElements)
-    console.log(toReceiveElements)
+
     const toTradeElementsText = toTradeElements.map((component) => component.props.name);
     const toTradeElementsImage = toTradeElements.map((component) => component.props.image);
     const toReceiveElementsText = toReceiveElements.map((component) => component.props.name);
     const toReceiveElementsImage = toReceiveElements.map((component) => component.props.image);
-    console.log(toTradeElementsText)
-    console.log(toTradeElementsImage)
-    console.log(toReceiveElementsText)
-    console.log(toReceiveElementsImage)
-    console.log(noteData)
+    const id = uuid()
     let steamid = await fetch('http://localhost:4000/steamid', {
       credentials: "include"
     })
+    let ProfilePic = await fetch('http://localhost:4000/profilepic', {
+      credentials: 'include'
+    }).then(response => response.text())
+
     let steamidjson = await steamid.json()
     console.log("this is the steamid source", steamidjson)
     fetch('http://localhost:5500/sendListingData', { // modify for different localhost
@@ -70,7 +92,9 @@ function ListingCreation() {
         ToReceiveElementsText: toReceiveElementsText,
         ToReceiveElementsImage: toReceiveElementsImage,
         Notes: noteData,
-        UserSteamID: steamidjson
+        UserSteamID: steamidjson,
+        ProfilePic: ProfilePic,
+        id: id
       })
     })
     //.then(response => response.json())
@@ -249,7 +273,7 @@ function ListingCreation() {
         </div>
         <div className = 'notes-submit-container'>
           <textarea placeholder = "Add additional comments" className = 'notes-submission' onChange={onChangeNotes}></textarea>
-          <button className = 'submit-listing' onClick = {() => {sendListingData()}}>
+          <button className = 'submit-listing' onClick = {() => {hasTradelink ? sendListingData() : alert('Please set your tradelink in your profile')}}>
             Submit
           </button>
         </div>

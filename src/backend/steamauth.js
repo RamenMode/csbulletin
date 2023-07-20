@@ -96,6 +96,9 @@ function ensureAuthenticated(req, res, next) {
 app.get('/steamid', (req, res) => {
     res.send(req.user._json.steamid)
 })
+app.get('/profilepic', (req, res) => {
+   res.send(req.user.photos[1].value)
+})
 
 app.get('/test', (req, res) => {
     res.send('test complete')

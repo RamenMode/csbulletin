@@ -45,6 +45,32 @@ async function run() {
   }
 }
 
+app.get('/getAllListings', async (req, res) => {
+  try {
+    const database = client.db('Users');
+    const listings = database.collection('users');
+    var listing = listings.find({}, { Listings:1, SteamID: 1, ProfilePic: 1, _id: 0})
+    if ((await listings.countDocuments({})) === 0) {
+      console.log("No documents found!");
+    }
+    var allPostings = []
+    for await (var doc of listing) {
+      doc.Listings.push({SteamID: doc.SteamID})
+      if ('ProfilePic' in doc) {
+        doc.Listings.push({ProfilePic: doc.ProfilePic})
+      }
+      if ('Tradelink' in doc) {
+        doc.Listings.push({Tradelink: doc.Tradelink})
+      }
+      allPostings.push(doc)
+    }
+    //console.log(allPostings)
+    res.status(200).send({UserPosts: allPostings})
+  } catch (err) {
+    res.status(400).send({message: err.message})
+  }
+})
+
 app.post('/getTradelink', async (req, res) => {
   try {
     const {SteamID} = req.body
@@ -61,7 +87,33 @@ app.post('/getTradelink', async (req, res) => {
 
 app.post('/addTradelink', async (req, res) => {
   try {
-    const {SteamID, Tradelink} = req.body
+    const {SteamID, Tradelink, ProfilePic} = req.body
+
+    let userExists = await fetch('http://localhost:5500/findUser', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify({
+        SteamID: SteamID
+      })
+    })
+    .then(response => response.text())
+  
+    if (!userExists) { // edit here too
+      await fetch('http://localhost:5500/createUser', { // creates user in db
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+          SteamID: SteamID,
+          ProfilePic: ProfilePic
+        })
+      })
+    }
     const database = client.db('Users');
     const listings = database.collection('users');
     const query = { SteamID: SteamID }
@@ -94,9 +146,26 @@ app.post('/findUser', async (req, res) => {
   }
 })
 
+app.post('/deletePost', async(req, res) => {
+  try {
+    console.log('i did something')
+    const {SteamID, id} = req.body
+    const database = client.db('Users')
+    const listings = database.collection('users')
+    const query = {SteamID: SteamID}
+    const result = await listings.updateOne(query,
+      { $pull: { Listings: { id: id }}},
+    );
+    console.log(result)
+    res.status(200).send(result)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
+
 app.post('/addPost', async (req, res) => {
   try {
-    const {SteamID, TradingElementsImage, TradingElementsText, ReceivingElementsImage, ReceivingElementsText, Notes} = req.body
+    const {SteamID, TradingElementsImage, TradingElementsText, ReceivingElementsImage, ReceivingElementsText, Notes, id} = req.body
     const database = client.db('Users');
     const listings = database.collection('users');
     const query = { SteamID: SteamID }
@@ -119,6 +188,7 @@ app.post('/addPost', async (req, res) => {
           Notes: Notes,
           ItemsToReceiveImage: ReceivingElementsImage,
           ItemsToReceiveText: ReceivingElementsText,
+          id: id
         }
       },
       $currentDate: {
@@ -137,7 +207,7 @@ app.post('/addPost', async (req, res) => {
 })
 
 app.post('/sendListingData', async (req, res) => {
-  const {ToTradeElementsText, ToTradeElementsImage, ToReceiveElementsText, ToReceiveElementsImage, Notes, UserSteamID} = req.body
+  const {ToTradeElementsText, ToTradeElementsImage, ToReceiveElementsText, ToReceiveElementsImage, Notes, UserSteamID, ProfilePic, id} = req.body
   console.log(ToTradeElementsImage)
   console.log(ToTradeElementsText)
   console.log(ToReceiveElementsImage)
@@ -164,7 +234,8 @@ app.post('/sendListingData', async (req, res) => {
         "Content-Type": 'application/json'
       },
       body: JSON.stringify({
-        SteamID: UserSteamID
+        SteamID: UserSteamID,
+        ProfilePic: ProfilePic
       })
     })
     flag = true
@@ -181,7 +252,8 @@ app.post('/sendListingData', async (req, res) => {
       TradingElementsText: ToTradeElementsText,
       ReceivingElementsImage: ToReceiveElementsImage,
       ReceivingElementsText: ToReceiveElementsText,
-      Notes: Notes
+      Notes: Notes,
+      id: id
     })
   })
   console.log
@@ -195,9 +267,9 @@ app.post('/sendListingData', async (req, res) => {
 
 // endpoints/routes
 app.post('/createUser', async (req, res) => {
-  const {SteamID} = req.body // destructure all params
+  const {SteamID, ProfilePic} = req.body // destructure all params
   try {
-    const user = await User.create({SteamID}) // add more params
+    const user = await User.create({SteamID, ProfilePic}) // add more params
     res.status(200).json(user)
   } catch (error) {
     res.status(400).json({error: error.message})

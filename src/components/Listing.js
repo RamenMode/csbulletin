@@ -1,41 +1,70 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './Listing.css'
 import ReactMarkdown from "react-markdown"
+import Item from './Item.js'
 
 function Listing({
     type,
     ProfilePic,
-    ItemsTrading,
-    ItemsReceiving,
+    ItemsTradingImage,
+    ItemsTradingText,
+    ItemsReceivingImage,
+    ItemsReceivingText,
     Notes,
-    Tradelink
+    Tradelink,
+    key,
+    onClick,
+    id
 }) {
 
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+
+  }, [visible])
+
+  if (visible) {
   return (
     <div className = {type == 1 ? 'listing1' : 'listing2'}>
               <div className = 'profile'>
                 <img className = "profilepic-listing" src = {`${ProfilePic}`}/>
               </div>
-              <div className = 'trading'>
-
-              </div>
-              <div className = 'receiving'>
-
-              </div>
+                {ItemsTradingImage ? <div className = 'trading'>
+                  {ItemsTradingImage.map((prop, index) => {
+                      return(
+                        <Item
+                          version = {2}
+                          
+                          image = {prop}
+                        />
+                      )
+                  })}
+              </div> : <div className = 'trading'/>}
+              {ItemsReceivingText ? <div className = 'receiving'>
+              {ItemsReceivingImage.map((prop, index) => {
+                      return(
+                        <Item
+                          version = {2}
+                          
+                          image = {prop}
+                        />
+                      )
+                  })}
+              </div> : <div className = 'receiving'/>}
               <div className = 'notes'>
-                <h3 className = 'notes-h3'>{Notes ? 'Notes': null}</h3>
                 <p className = 'notes-text'>{Notes}</p>
               </div>
               <div className = 'tradelink'>
-                <p className = 'notes-text'>{Tradelink}</p>
+                <a href = {Tradelink} target = "_blank" className = 'notes-text'>{Tradelink}</a>
               </div>
               {type != 1 ? <div className = 'cancel-box'>
-                <div className="Listing-x-cancel" onClick = {() => console.log('presseds')}>
+                <div className="Listing-x-cancel" onClick = {() => {onClick(id); setVisible(false)}}>
                   <i className="fa-light fa-xmark" style = {{fontSize: "4em"}}></i>
                 </div>
               </div> : null}
             </div>
-  )
+            )
+                } else return(null)
 }
 
 export default Listing

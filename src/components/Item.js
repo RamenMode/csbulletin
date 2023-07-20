@@ -6,11 +6,13 @@ export const Item = ({
     name,
     onClick,
     key,
-    pressed
+    pressed,
+    style,
+    version
 }) => {
     return(
         <>
-        {pressed ? null : <button style = {{backgroundImage: image, backgroundRepeat: 'no-repeat'}} class="item" onClick = {onClick}>{name}</button>}
+        {pressed ? null : <button style = {{backgroundImage: image, backgroundRepeat: 'no-repeat'}} className={version == 2? "item-modified" : "item"} onClick = {onClick}>{name}</button>}
         </>
     )
 }

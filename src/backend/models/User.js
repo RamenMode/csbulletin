@@ -29,7 +29,11 @@ const userSchema = new Schema({
             ],
             ItemsToReceiveText: [
                 String
-            ]
+            ],
+            id: {
+                type: String,
+                required: false
+            }
             }],
         required: false
     },

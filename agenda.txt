@@ -1,9 +1,14 @@
 To be implemented for backend:
 
 1. Validate create listing form and send to api to interact and add listing to user's MongoDB // complete
-2. Allow tradelink to be updated in the profile // Complete
-3. Allow users to delete listings
-4. Allow listings to be clickable and fully viewable
-5. Show listings in the bulletin
-6. Implement search for listings
+2. Allow tradelink to be updated in the profile // complete
+5. Show listings in the bulletin // complete
 7. Add SteamID on login // complete
+8. Warn users if they haven't set up their tradelink // complete
+
+
+still need to complete: 
+
+6. Implement search for listings and sort listings
+9. Profanity filter // future update
+4. Allow listings to be clickable and fully viewable // future update

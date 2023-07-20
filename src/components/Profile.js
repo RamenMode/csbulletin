@@ -13,6 +13,9 @@ function Profile() {
     }
 
     async function submitTradelink() {
+        let ProfilePic = await fetch('http://localhost:4000/profilepic', {
+            credentials: 'include'
+        }).then(response => response.text())
         let steamid = await fetch('http://localhost:4000/steamid', {
             credentials: "include"
         })
@@ -25,7 +28,8 @@ function Profile() {
             },
             body: JSON.stringify({
                 SteamID: steamidjson,
-                Tradelink: tradelinkInitial
+                Tradelink: tradelinkInitial,
+                ProfilePic: ProfilePic
             })
         })
         .then(response => response.json())

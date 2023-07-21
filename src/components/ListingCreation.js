@@ -71,6 +71,7 @@ function ListingCreation() {
     const toReceiveElementsText = toReceiveElements.map((component) => component.props.name);
     const toReceiveElementsImage = toReceiveElements.map((component) => component.props.image);
     const id = uuid()
+    const time = new Date()
     let steamid = await fetch('http://localhost:4000/steamid', {
       credentials: "include"
     })
@@ -94,7 +95,8 @@ function ListingCreation() {
         Notes: noteData,
         UserSteamID: steamidjson,
         ProfilePic: ProfilePic,
-        id: id
+        id: id,
+        dateCreated: time
       })
     })
     //.then(response => response.json())

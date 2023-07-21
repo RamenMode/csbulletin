@@ -15,19 +15,20 @@ function Marketplace() {
   const [currentListings, setCurrentListings] = useState([])
   const [selectedOption3, setSelectedOption3] = useState(-1)
 
-  function merge(arr1, arr2) {
+  function merge(arr1, arr2, selectedOption3) {
     const arrayd = []
     var j = 0
     var k = 0
-    while (j<arr1.length && k < arr2.length) {
-        if (arr1[j] < arr2[k]) {
+    if (selectedOption3 == 1) {
+      while (j<arr1.length && k < arr2.length) {
+        if (arr1[j].dateCreated < arr2[k].dateCreated) {
             arrayd.push(arr1[j])
             j=j+1
         } else {
             arrayd.push(arr2[k])
             k=k+1
         }
-    }
+      }
         if (j==arr1.length) {
             arrayd.push(...arr2.slice(k))
             return arrayd
@@ -35,16 +36,34 @@ function Marketplace() {
             arrayd.push(...arr1.slice(j))
             return arrayd
         }
-}
+    } else {
+      while (j<arr1.length && k < arr2.length) {
+        if (arr1[j].dateCreated > arr2[k].dateCreated) {
+            arrayd.push(arr1[j])
+            j=j+1
+        } else {
+            arrayd.push(arr2[k])
+            k=k+1
+        }
+      }
+        if (j==arr1.length) {
+            arrayd.push(...arr2.slice(k))
+            return arrayd
+        } else {
+            arrayd.push(...arr1.slice(j))
+            return arrayd
+        }
+    }
+  }
 
-  function mergeSort(array) {
+  function mergeSort(array, selectedOption3) {
     if (array.length < 2) {
         return array
     }
     const halfway = Math.ceil(array.length/2)
     var arr1 = array.slice(0, halfway)
     var arr2 = array.slice(halfway)
-    return merge(mergeSort(arr1), mergeSort(arr2))
+    return merge(mergeSort(arr1, selectedOption3), mergeSort(arr2, selectedOption3), selectedOption3)
   }
 
   async function checkAuthenticated() {
@@ -83,6 +102,7 @@ function Marketplace() {
               listingObject.ProfilePic = ProfilePic
               listingObject.SteamID = SteamID
               listingObject.Tradelink = Tradelink
+              listingObject.dateCreated = listingSelect.dateCreated
               listingsarray.push(listingObject)
             } else if (flag == false) {
               if ('SteamID' in listingSelect) {
@@ -99,7 +119,10 @@ function Marketplace() {
           flag = true
         }
       }
-      return listingsarray
+      console.log(listingsarray)
+      const listingsarraysorted = mergeSort(listingsarray, selectedOption3)
+      console.log(listingsarraysorted)
+      return listingsarraysorted
     })
     .then(result => setCurrentListings(result))
   }, [selectedOption3])
@@ -161,14 +184,7 @@ function Marketplace() {
                             />
                         )
             })}
-            <Listing type = {1}/><Listing type = {1}/>
-            <Listing type = {1}/>
-            <Listing type = {1}/>
-            <Listing type = {1}/>
-            <Listing type = {1}/>
-            <Listing type = {1}/>
-            <Listing type = {1}/>
-            <Listing type = {1}/>
+            
 
             <div className = "marketplace-bottom-padding"/>
             

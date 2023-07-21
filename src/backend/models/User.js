@@ -33,6 +33,10 @@ const userSchema = new Schema({
             id: {
                 type: String,
                 required: false
+            },
+            dateCreated: {
+                type: Date,
+                required: false
             }
             }],
         required: false

@@ -166,10 +166,11 @@ app.post('/deletePost', async(req, res) => {
 
 app.post('/addPost', async (req, res) => {
   try {
-    const {SteamID, TradingElementsImage, TradingElementsText, ReceivingElementsImage, ReceivingElementsText, Notes, id} = req.body
+    const {SteamID, TradingElementsImage, TradingElementsText, ReceivingElementsImage, ReceivingElementsText, Notes, id, dateCreated} = req.body
     const database = client.db('Users');
     const listings = database.collection('users');
     const query = { SteamID: SteamID }
+    const dateCreatedDatetime = new Date(dateCreated)
     /*let userExists = await fetch('http://localhost:5500/findUser', { // finds user in db // now returns a json BREAKING
       method: 'POST',
       credentials: 'include',
@@ -189,7 +190,8 @@ app.post('/addPost', async (req, res) => {
           Notes: Notes,
           ItemsToReceiveImage: ReceivingElementsImage,
           ItemsToReceiveText: ReceivingElementsText,
-          id: id
+          id: id,
+          dateCreated: dateCreatedDatetime
         }
       },
       $currentDate: {
@@ -208,7 +210,7 @@ app.post('/addPost', async (req, res) => {
 })
 
 app.post('/sendListingData', async (req, res) => {
-  const {ToTradeElementsText, ToTradeElementsImage, ToReceiveElementsText, ToReceiveElementsImage, Notes, UserSteamID, ProfilePic, id} = req.body
+  const {ToTradeElementsText, ToTradeElementsImage, ToReceiveElementsText, ToReceiveElementsImage, Notes, UserSteamID, ProfilePic, id, dateCreated} = req.body
   console.log(ToTradeElementsImage)
   console.log(ToTradeElementsText)
   console.log(ToReceiveElementsImage)
@@ -254,7 +256,8 @@ app.post('/sendListingData', async (req, res) => {
       ReceivingElementsImage: ToReceiveElementsImage,
       ReceivingElementsText: ToReceiveElementsText,
       Notes: Notes,
-      id: id
+      id: id,
+      dateCreated: dateCreated
     })
   })
   console.log

@@ -14,6 +14,7 @@ function Marketplace() {
   const userStatus = useSelector((state) => state.user.value)
   const [currentListings, setCurrentListings] = useState([])
   const [selectedOption3, setSelectedOption3] = useState(-1)
+  const [searchQ, setSearchQ] = useState('')
 
   function merge(arr1, arr2, selectedOption3) {
     const arrayd = []
@@ -79,6 +80,10 @@ function Marketplace() {
   }, [])
 
   useEffect(() => {
+    
+  }, [searchQ])
+
+  useEffect(() => {
     fetch('http://localhost:5500/getAllListings?' + new URLSearchParams({
       order: selectedOption3
     }))
@@ -134,6 +139,7 @@ function Marketplace() {
               <div className = 'search-box'>
                 <SearchMenu
                   setOrder = {setSelectedOption3}
+                  setSearch = {setSearchQ}
                 />
               </div>
             </div>
@@ -170,19 +176,47 @@ function Marketplace() {
               </div>
             </div>
             {currentListings.map((prop, key) => {
-                        return(
-                            <Listing 
-                              key = {key}
-                              ProfilePic = {prop.ProfilePic ? prop.ProfilePic : null}
-                              Notes = {prop.Notes}
-                              Tradelink = {prop.Tradelink}
-                              type = {1}
-                              ItemsTradingImage = {prop.ItemsToTradeImage}
-                              ItemsTradingText = {prop.ItemsToTradeText}
-                              ItemsReceivingImage = {prop.ItemsToReceiveImage}
-                              ItemsReceivingText = {prop.ItemsToReceiveText}
-                            />
-                        )
+                var includedInTrade = false;
+                var includedInReceive  = false;
+                for (let giving of prop.ItemsToTradeText) {
+                  if (giving.toLowerCase().includes(searchQ)) {
+                    includedInTrade = true;
+                  }
+                }
+                for (let receiving of prop.ItemsToReceiveText) {
+                  if (receiving.toLowerCase().includes(searchQ)) {
+                    includedInReceive = true;
+                  }
+                }
+                if (searchQ && (includedInTrade || includedInReceive))
+                  return(
+                      <Listing 
+                        key = {key}
+                        ProfilePic = {prop.ProfilePic ? prop.ProfilePic : null}
+                        Notes = {prop.Notes}
+                        Tradelink = {prop.Tradelink}
+                        type = {1}
+                        ItemsTradingImage = {prop.ItemsToTradeImage}
+                        ItemsTradingText = {prop.ItemsToTradeText}
+                        ItemsReceivingImage = {prop.ItemsToReceiveImage}
+                        ItemsReceivingText = {prop.ItemsToReceiveText}
+                      />
+                  )
+                else if (!searchQ) {
+                  return(
+                    <Listing 
+                      key = {key}
+                      ProfilePic = {prop.ProfilePic ? prop.ProfilePic : null}
+                      Notes = {prop.Notes}
+                      Tradelink = {prop.Tradelink}
+                      type = {1}
+                      ItemsTradingImage = {prop.ItemsToTradeImage}
+                      ItemsTradingText = {prop.ItemsToTradeText}
+                      ItemsReceivingImage = {prop.ItemsToReceiveImage}
+                      ItemsReceivingText = {prop.ItemsToReceiveText}
+                    />
+                )
+                }
             })}
             
 

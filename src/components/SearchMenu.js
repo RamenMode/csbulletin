@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './SearchMenu.css'
 
 const SearchMenu = ({
-  setOrder
+  setOrder,
+  setSearch
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   //const [selectedOption1, setSelectedOption1] = useState('Option 1');
@@ -37,6 +38,7 @@ const SearchMenu = ({
     } else {
       setOrder(1)
     }
+    setSearch(searchQuery.toLowerCase())
   };
 // add testsearchmenu which is just a div if needed
   return (

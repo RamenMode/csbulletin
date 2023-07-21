@@ -9,9 +9,7 @@ To be implemented for backend:
 
 still need to complete: 
 
-6. Implement search for listings and sort listings
- - filter by search
- - filter by date created of post (pass in new parameter) instead of date created of user
+6. Implement search for listings and sort listings // complete
 9. Profanity filter // future update
 4. Allow listings to be clickable and fully viewable // future update
 10. add popup's describing skin // future update

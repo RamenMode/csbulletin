@@ -1,0 +1,77 @@
+/* SearchMenu.css */
+/* SearchMenu.css */
+/* SearchMenu.css */
+
+.test-searchmenu {
+  display: flex;
+  height: 50vh;
+  width: 20%;
+}
+.container-searchmenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #212122;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .form-searchmenu {
+    display: flex;
+    flex-direction: column; /* Change from 'flex-wrap: wrap;' to 'flex-direction: column;' */
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Rest of the styles remain the same */
+  
+  /* Rest of the styles remain the same */
+  
+  
+  .input-searchmenu {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 150%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+    margin-top: 10%;
+    text-align: left;
+  }
+  
+  .select-searchmenu {
+    padding: 5% 10%;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+    margin: 5%
+    
+  }
+
+  .first-two-select {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .button-searchmenu {
+    padding: 10% 10%;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    bottom: 0px
+  }
+  
+  .button-searchmenu:hover {
+    background-color: gray;
+  }
+  

@@ -6,6 +6,7 @@ import { setUser, setEmpty } from '../redux/counter.js'
 
 // temporary imports for development purposes
 import { useSelector, useDispatch } from 'react-redux';
+import SearchMenu from './SearchMenu'
 
 function Marketplace() {
 
@@ -105,7 +106,7 @@ function Marketplace() {
         <div className = 'left-box'>
             <div className = 'search'>
               <div className = 'search-box'>
-
+                <SearchMenu/>
               </div>
             </div>
             <div className = 'list'>

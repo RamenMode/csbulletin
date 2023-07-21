@@ -29,7 +29,7 @@
 }
 
 .search {
-    flex: 0.66;
+    flex: 0.33;
     background-color: #020403;
     display: flex;
     justify-content: center;
@@ -37,7 +37,7 @@
 }
 
 .list {
-    flex: 0.3;
+    flex: 0.4;
     background-color: #020403;
     display: flex;
     justify-content: center;

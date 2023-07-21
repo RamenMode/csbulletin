@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './SearchMenu.css'
 
-const SearchMenu = () => {
+const SearchMenu = ({
+  setOrder
+}) => {
   const [searchQuery, setSearchQuery] = useState('');
   //const [selectedOption1, setSelectedOption1] = useState('Option 1');
   //const [selectedOption2, setSelectedOption2] = useState('Option 1');
-  const [selectedOption3, setSelectedOption3] = useState('Option 1');
+  const [listingOrder, setListingOrder] = useState('Newest');
 
   // Dummy variables for dropdown options
   //const dropdownOptions1 = ['All Items', 'Weapons', 'Stickers', 'Lootboxes'];
@@ -25,16 +27,16 @@ const SearchMenu = () => {
   };*/
 
   const handleDropdownChange3 = (e) => {
-    setSelectedOption3(e.target.value);
+    setListingOrder(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform your search logic here with the searchQuery and selected dropdown values
-    console.log('Search query:', searchQuery);
-    //console.log('Dropdown option 1:', selectedOption1);
-    //console.log('Dropdown option 2:', selectedOption2);
-    console.log('Dropdown option 3:', selectedOption3);
+    if (listingOrder == 'Newest') {
+      setOrder(-1)
+    } else {
+      setOrder(1)
+    }
   };
 // add testsearchmenu which is just a div if needed
   return (
@@ -62,7 +64,7 @@ const SearchMenu = () => {
               ))}
             </select>
               </div>*/}
-          <select className = "select-searchmenu" value={selectedOption3} onChange={handleDropdownChange3}>
+          <select className = "select-searchmenu" value= {listingOrder} onChange={handleDropdownChange3}>
             {dropdownOptions3.map((option) => (
               <option key={option} value={option}>
                 {option}

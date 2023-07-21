@@ -47,9 +47,10 @@ async function run() {
 
 app.get('/getAllListings', async (req, res) => {
   try {
+    const order = req.query.order
     const database = client.db('Users');
     const listings = database.collection('users');
-    var listing = listings.find({}, { Listings:1, SteamID: 1, ProfilePic: 1, _id: 0})
+    var listing = listings.find({}, { Listings:1, SteamID: 1, ProfilePic: 1, _id: 0}).sort({createdAt: order})
     if ((await listings.countDocuments({})) === 0) {
       console.log("No documents found!");
     }

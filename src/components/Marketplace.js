@@ -13,6 +13,7 @@ function Marketplace() {
   const dispatch = useDispatch()
   const userStatus = useSelector((state) => state.user.value)
   const [currentListings, setCurrentListings] = useState([])
+  const [selectedOption3, setSelectedOption3] = useState(-1)
 
   function merge(arr1, arr2) {
     const arrayd = []
@@ -59,7 +60,9 @@ function Marketplace() {
   }, [])
 
   useEffect(() => {
-    fetch('http://localhost:5500/getAllListings')
+    fetch('http://localhost:5500/getAllListings?' + new URLSearchParams({
+      order: selectedOption3
+    }))
     .then(response => response.json())
     .then(response => {
       const listingsarray = []
@@ -99,14 +102,16 @@ function Marketplace() {
       return listingsarray
     })
     .then(result => setCurrentListings(result))
-  }, [])
+  }, [selectedOption3])
 
   return (
     <div className = 'background'>
         <div className = 'left-box'>
             <div className = 'search'>
               <div className = 'search-box'>
-                <SearchMenu/>
+                <SearchMenu
+                  setOrder = {setSelectedOption3}
+                />
               </div>
             </div>
             <div className = 'list'>

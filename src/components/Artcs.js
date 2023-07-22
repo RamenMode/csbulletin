@@ -23,9 +23,9 @@ function Artcs() {
   return (
     <>
     <div className='hero-container'>
-      <video autoPlay loop muted id = "video">
+      {/*<video autoPlay loop muted id = "video">
           <source src = {video} type = 'video/mp4'/>
-      </video>
+  </video>*/}
       <h1 style = {{zIndex: 3, color: '#fff'}} >A P2P Trading Forum</h1>
       <p style = {{color: '#fff', zIndex: 3}}>No fees, no middleman</p>
       <div className='hero-btns' style = {{zIndex: 3}}>

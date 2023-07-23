@@ -20,14 +20,14 @@ function ListingCreation() {
   const dispatch = useDispatch()
 
   const getInventory = () => {
-    fetch('http://localhost:4000/user', {
+    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/user', {
             credentials: 'include'
         })
         .then(response => response.json())
         .then(data => {
           const steamid = data.id
           console.log(steamid)
-          return fetch(`http://localhost:4000/getInventory/${steamid}`, {
+          return fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + `/getInventory/${steamid}`, {
             credentials: 'include',
           });
           })
@@ -42,10 +42,10 @@ function ListingCreation() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:4000/steamid', {
+    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         }).then(response => response.json())
-        .then(steamid => fetch('http://localhost:5500/getTradelink', {
+        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/getTradelink', {
             credentials: 'include',
             method: 'POST',
             headers: {
@@ -72,16 +72,16 @@ function ListingCreation() {
     const toReceiveElementsImage = toReceiveElements.map((component) => component.props.image);
     const id = uuid()
     const time = new Date()
-    let steamid = await fetch('http://localhost:4000/steamid', {
+    let steamid = await fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
       credentials: "include"
     })
-    let ProfilePic = await fetch('http://localhost:4000/profilepic', {
+    let ProfilePic = await fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/profilepic', {
       credentials: 'include'
     }).then(response => response.text())
 
     let steamidjson = await steamid.json()
     console.log("this is the steamid source", steamidjson)
-    fetch('http://localhost:5500/sendListingData', { // modify for different localhost
+    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/sendListingData', { // modify for different localhost
       headers: {
         "Content-Type": 'application/json'
       },

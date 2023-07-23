@@ -13,14 +13,14 @@ function Profile() {
     }
 
     async function submitTradelink() {
-        let ProfilePic = await fetch('http://localhost:4000/profilepic', {
+        let ProfilePic = await fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/profilepic', {
             credentials: 'include'
         }).then(response => response.text())
-        let steamid = await fetch('http://localhost:4000/steamid', {
+        let steamid = await fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         })
         let steamidjson = await steamid.json()
-        fetch('http://localhost:5500/addTradelink', {
+        fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/addTradelink', {
             credentials: 'include',
             method: 'POST',
             headers: {
@@ -38,10 +38,10 @@ function Profile() {
 
     useEffect(() => {
 
-        fetch('http://localhost:4000/steamid', {
+        fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         }).then(response => response.json())
-        .then(steamid => fetch('http://localhost:5500/getTradelink', {
+        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/getTradelink', {
             credentials: 'include',
             method: 'POST',
             headers: {
@@ -55,7 +55,7 @@ function Profile() {
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:4000/user', {
+        fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/user', {
             credentials: 'include'
         })
         .then(response => response.json())

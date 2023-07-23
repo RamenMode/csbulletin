@@ -7,10 +7,10 @@ function EditListing() {
   const [listings, setListings] = useState([])
 
   function deletePost(id) {
-    fetch('http://localhost:4000/steamid', {
+    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         }).then(response => response.json())
-        .then(steamid => fetch('http://localhost:5500/deletePost', {
+        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/deletePost', {
           credentials: "include",
           method: 'POST',
           headers: {
@@ -25,10 +25,10 @@ function EditListing() {
   }
 
   function getUserPosts() {
-    fetch('http://localhost:4000/steamid', {
+    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         }).then(response => response.json())
-        .then(steamid => fetch('http://localhost:5500/findUser', {
+        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/findUser', {
             credentials: 'include',
             method: 'POST',
             headers: {

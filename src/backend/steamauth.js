@@ -5,10 +5,12 @@ var util = require('util')
 var passportSteam = require('passport-steam');
 var cors = require('cors');
 var SteamStrategy = passportSteam.Strategy; // check this first
+const dotenv = require("dotenv")
+dotenv.config()
 // mod.cjs
 var fetch = require('node-fetch')
 // set up express app port
-var port = 4000;
+var port = process.env.PORT_AUTH
 
 // set up express app
 var app = express(); // check here 2nd, didn't set up views 

@@ -6,13 +6,15 @@ const User = require('./models/User')
 var cors = require('cors')
 // set up mongodb
 dotenv.config()
+var fetch = require('node-fetch')
+
 const connectionString = `mongodb+srv://${process.env.REACT_APP_DB_USERNAME}:${process.env.REACT_APP_DB_PASSWORD}@csbulletin.gjbzahg.mongodb.net/Users?retryWrites=true&w=majority`
 
 const client = new MongoClient(connectionString);
 var ObjectId = require('mongodb').ObjectId; 
 
 // set up server
-const port = process.env.PORT
+const port = process.env.PORT_DB
 const app = express()
 app.use(express.json())
 app.use(cors({

@@ -21,7 +21,7 @@ export const Button = ({
     const userStatus = useSelector((state) => state.user.value)
     const dispatch = useDispatch()
     return (
-        <Link to={!userStatus ? 'http://localhost:4000/auth/steam' : '/bulletin'} className = 'btn-mobile'>
+        <Link to={!userStatus ? process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/auth/steam' : '/bulletin'} className = 'btn-mobile'>
             <button 
                 className={`btn ${checkButtonStyle} ${checkButtonSize}`}
                 onClick = {onClick}

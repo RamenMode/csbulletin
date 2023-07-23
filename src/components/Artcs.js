@@ -13,7 +13,7 @@ function Artcs() {
   const dispatch = useDispatch()
 
   const test = () => {
-    fetch('http://localhost:4000/loggedin', {
+    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/loggedin', {
       credentials: 'include'
     })
       .then(response => response.text())

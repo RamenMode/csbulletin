@@ -80,14 +80,14 @@ function Navbar() {
                         </a>
                     </li> : null}
                     {button ? null : userStatus ? <li className = 'nav-item-modified'>
-                        <a href={process.env.REACT_APP_BASE_URL_API + "/logout?redirect=" + window.location.href} className="steambutton" >
+                        <a href={process.env.REACT_APP_BASE_URL_API + "/logout?redirect=" + 'https://www.csbullet.in/'} className="steambutton" >
                             <span>Sign Out</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
                     </li> : <li className = 'nav-item-modified'>
-                        <a className="steambutton" href = {process.env.REACT_APP_BASE_URL_API + "/auth/steam?redirect=" + window.location.href}>
+                        <a className="steambutton" href = {process.env.REACT_APP_BASE_URL_API + "/auth/steam?redirect=" + 'https://www.csbullet.in/'}>
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
@@ -96,7 +96,7 @@ function Navbar() {
                     </li>}
                 </ul>
                 {!button ? null : !userStatus ? <li className = 'nav-item-button'>
-                        <a className="steambutton" href = {process.env.REACT_APP_BASE_URL_API + "/auth/steam?redirect=" + window.location.href}>
+                        <a className="steambutton" href = {process.env.REACT_APP_BASE_URL_API + "/auth/steam?redirect=" + 'https://www.csbullet.in/'}>
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>

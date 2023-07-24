@@ -13,3 +13,8 @@ still need to complete:
 9. Profanity filter // future update
 4. Allow listings to be clickable and fully viewable // future update
 10. add popup's describing skin // future update
+
+
+Deployment:
+1. Cookie session alternative for handling multiple users
+2. Figure out whether two ports should be used or if it is possible

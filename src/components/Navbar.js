@@ -34,7 +34,7 @@ function Navbar() {
     }
 
     async function checkAuthenticated() {
-        fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/user', {
+        fetch(process.env.REACT_APP_BASE_URL_API + '/user', {
             credentials: 'include'
         })
         .then(response => response.json())
@@ -75,19 +75,19 @@ function Navbar() {
                         </Link>
                     </li>
                     {userStatus ? <li className = 'nav-item'>
-                        <a href={process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + "/logout"} className = 'nav-links' onClick={closeMobileMenu}>
+                        <a href={process.env.REACT_APP_BASE_URL_API + "/logout"} className = 'nav-links' onClick={closeMobileMenu}>
                             Sign Out
                         </a>
                     </li> : null}
                     {button ? null : userStatus ? <li className = 'nav-item-modified'>
-                        <a href={process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + "/logout"} className="steambutton" >
+                        <a href={process.env.REACT_APP_BASE_URL_API + "/logout"} className="steambutton" >
                             <span>Sign Out</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
                             </div>
                         </a>
                     </li> : <li className = 'nav-item-modified'>
-                        <a className="steambutton" href = {process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + "/auth/steam"}>
+                        <a className="steambutton" href = {process.env.REACT_APP_BASE_URL_API + "/auth/steam"}>
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>
@@ -96,7 +96,7 @@ function Navbar() {
                     </li>}
                 </ul>
                 {!button ? null : !userStatus ? <li className = 'nav-item-button'>
-                        <a className="steambutton" href = {process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + "/auth/steam"}>
+                        <a className="steambutton" href = {process.env.REACT_APP_BASE_URL_API + "/auth/steam"}>
                             <span>Login With Steam</span>
                             <div className="icon">
                                 <i className="fa fa-steam-square"></i>

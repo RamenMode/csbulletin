@@ -68,7 +68,7 @@ function Marketplace() {
   }
 
   async function checkAuthenticated() {
-    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/user', {
+    fetch(process.env.REACT_APP_BASE_URL_API + '/user', {
         credentials: 'include'
     })
     .then(response => response.json())
@@ -84,7 +84,7 @@ function Marketplace() {
   }, [searchQ])
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/getAllListings?' + new URLSearchParams({
+    fetch(process.env.REACT_APP_BASE_URL_API + '/getAllListings?' + new URLSearchParams({
       order: selectedOption3
     }))
     .then(response => response.json())
@@ -151,8 +151,8 @@ function Marketplace() {
                 <Link className = 'list-button list-button-text' to = '/createListing'>List a Trade</Link> </>
                 : 
                 <>
-                <a className = 'list-button list-button-text' href = {process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/auth/steam'}>Manage your listings</a>
-                <a className = 'list-button list-button-text' href = {process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/auth/steam'}>List a Trade</a> </>
+                <a className = 'list-button list-button-text' href = {process.env.REACT_APP_BASE_URL_API + '/auth/steam'}>Manage your listings</a>
+                <a className = 'list-button list-button-text' href = {process.env.REACT_APP_BASE_URL_API + '/auth/steam'}>List a Trade</a> </>
                 }
               </div>
             </div>

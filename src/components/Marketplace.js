@@ -84,7 +84,7 @@ function Marketplace() {
   }, [searchQ])
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/getAllListings?' + new URLSearchParams({
+    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/getAllListings?' + new URLSearchParams({
       order: selectedOption3
     }))
     .then(response => response.json())

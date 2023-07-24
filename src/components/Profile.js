@@ -20,7 +20,8 @@ function Profile() {
             credentials: "include"
         })
         let steamidjson = await steamid.json()
-        fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/addTradelink', {
+        console.log(steamidjson, ProfilePic)
+        fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/addTradelink', {
             credentials: 'include',
             method: 'POST',
             headers: {
@@ -41,7 +42,7 @@ function Profile() {
         fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         }).then(response => response.json())
-        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/getTradelink', {
+        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/getTradelink', {
             credentials: 'include',
             method: 'POST',
             headers: {

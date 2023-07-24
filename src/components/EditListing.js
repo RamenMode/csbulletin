@@ -10,7 +10,7 @@ function EditListing() {
     fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         }).then(response => response.json())
-        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/deletePost', {
+        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/deletePost', {
           credentials: "include",
           method: 'POST',
           headers: {
@@ -28,7 +28,7 @@ function EditListing() {
     fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         }).then(response => response.json())
-        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/findUser', {
+        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/findUser', {
             credentials: 'include',
             method: 'POST',
             headers: {

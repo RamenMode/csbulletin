@@ -45,7 +45,7 @@ function ListingCreation() {
     fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/steamid', {
             credentials: "include"
         }).then(response => response.json())
-        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/getTradelink', {
+        .then(steamid => fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/getTradelink', {
             credentials: 'include',
             method: 'POST',
             headers: {
@@ -81,7 +81,7 @@ function ListingCreation() {
 
     let steamidjson = await steamid.json()
     console.log("this is the steamid source", steamidjson)
-    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_DB + '/sendListingData', { // modify for different localhost
+    fetch(process.env.REACT_APP_BASE_URL_API + process.env.REACT_APP_PORT_AUTH + '/sendListingData', { // modify for different localhost
       headers: {
         "Content-Type": 'application/json'
       },

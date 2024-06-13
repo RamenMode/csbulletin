@@ -1,5 +1,5 @@
 # Frontend of csbullet.in
-Project is no longer maintained and is now made public. Frontend utilizes React with Redux to manage local state as well as other technology found in the package.json. see RamenMode/csbulletin-api to see the backend.
+Project is no longer maintained and is now made public. Frontend utilizes React with Redux to manage local state as well as other technology found in the package.json. see RamenMode/csbulletin-api to see the backend. CSGO Asset data was sourced and mined from a variety of different repositories and Steam API and uses the Steam CDN to produce images
 
 Author: Kevin Xue July 2023
 

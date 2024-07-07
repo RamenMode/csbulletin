@@ -5,8 +5,6 @@ import './Artcs.css';
 import './Navbar.js'
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, setEmpty } from '../redux/counter.js'
-import video from '../moreAssets/swat-counter-strike-global-offensive-4k-live-wallpaper.mp4'
-import video2 from '../moreAssets/video-2.mp4'
 import CookieConsent from "react-cookie-consent";
 
 function Artcs() {
